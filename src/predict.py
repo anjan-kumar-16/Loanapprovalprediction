@@ -100,24 +100,50 @@ def predict_loan(application_data):
         sorted_shap = sorted(shap_dict.items(), key=lambda x: abs(x[1]), reverse=True)
         top_3 = sorted_shap[:3]
         
+        # Actionable Suggestions Mapping
+        SUGGESTIONS = {
+            "cibil_score": "Work on improving your CIBIL score by paying off existing debts on time.",
+            "loan_to_asset": "Consider applying for a smaller loan amount or wait until your asset value increases.",
+            "loan_to_income": "Consider applying for a smaller loan amount to reduce your debt-to-income ratio.",
+            "loan_amount": "Requesting a smaller loan amount may improve your chances of approval.",
+            "loan_term": "Try adjusting your loan term (a longer term reduces monthly burden).",
+            "income_annum": "Increasing your co-applicant's income or showing additional income sources may help.",
+            "residential_assets_value": "Declaring additional residential assets can strengthen your application.",
+            "commercial_assets_value": "Declaring additional commercial assets can strengthen your application.",
+            "luxury_assets_value": "Declaring additional luxury assets can strengthen your application.",
+            "bank_asset_value": "Increasing your bank balance and savings can improve your approval odds."
+        }
+        
         # Format explanation
-        top_factors = []
+        reasons = []
+        suggestions = set()
+        
         for feature, impact in top_3:
-            # Since we selected SHAP values specifically for the PREDICTED class:
-            # Positive impact means it pushed TOWARDS the prediction.
-            # Negative impact means it pushed AWAY from the prediction.
-            if impact > 0:
-                direction = f"contributed to {prediction_label.upper()}"
-            else:
-                direction = f"worked against {prediction_label.upper()}"
-            top_factors.append(f"{feature} ({direction})")
+            # Clean up the feature name for the frontend (e.g., 'loan_to_asset' -> 'Loan To Asset')
+            clean_feature = feature.replace('_', ' ').title()
             
-        return {
-            "prediction": prediction_label,
+            if impact > 0:
+                direction = f"contributed to the {prediction_label.lower()} decision"
+                # If rejected, and this feature contributed to the rejection, offer a suggestion
+                if prediction_num == 0 and feature in SUGGESTIONS:
+                    suggestions.add(SUGGESTIONS[feature])
+            else:
+                direction = f"worked against the {prediction_label.lower()} decision"
+                
+            reasons.append(f"{clean_feature} {direction}")
+            
+        result = {
+            "loan_status": f"Loan {prediction_label}",
             "approval_probability": float(approval_prob),
             "rejection_probability": float(rejection_prob),
-            "top_factors": top_factors
+            "reasons_for_decision": reasons
         }
+        
+        # Only add suggestions if the loan was rejected
+        if prediction_num == 0 and suggestions:
+            result["improvement_suggestions"] = list(suggestions)
+            
+        return result
         
     except Exception as e:
         return {"error": f"Prediction failed: {e}"}
