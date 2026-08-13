@@ -1,0 +1,16 @@
+Column,DataType,Usage
+no_of_dependents,int64,Feature
+education,object,Feature
+self_employed,int64,Feature
+income_annum,int64,Feature
+loan_amount,int64,Feature
+loan_term,int64,Feature
+cibil_score,int64,Feature
+residential_assets_value,int64,Feature
+commercial_assets_value,int64,Feature
+luxury_assets_value,int64,Feature
+bank_asset_value,int64,Feature
+loan_status,object,Target
+total_assets,int64,Feature
+loan_to_income,float64,Feature
+loan_to_asset,float64,Feature
