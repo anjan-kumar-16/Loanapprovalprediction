@@ -1,7 +1,7 @@
 Column,DataType,Usage
 no_of_dependents,int64,Feature
 education,object,Feature
-self_employed,int64,Feature
+employment_type,int64,Feature
 income_annum,int64,Feature
 loan_amount,int64,Feature
 loan_term,int64,Feature

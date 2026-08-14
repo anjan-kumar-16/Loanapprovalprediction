@@ -41,7 +41,7 @@ def predict_loan(application_data):
         
     # Validate Input
     required_keys = [
-        "no_of_dependents", "education", "self_employed", "income_annum",
+        "no_of_dependents", "education", "employment_type", "income_annum",
         "loan_amount", "loan_term", "cibil_score", "bank_asset_value"
     ]
     
@@ -142,14 +142,14 @@ def predict_loan(application_data):
 if __name__ == "__main__":
     # Test the function with dummy data
     test_applicant = {
-        "no_of_dependents": 2,
-        "education": "Graduate",
-        "self_employed": 1,
-        "income_annum": 8000000,
-        "loan_amount": 10000000,
-        "loan_term": 10,
-        "cibil_score": 300,
-        "bank_asset_value": 1500000
+        "no_of_dependents": 4,
+        "education": " Not Graduate",
+        "employment_type": 1,
+        "income_annum": 250000,
+        "loan_amount": 500000,
+        "loan_term": 60,
+        "cibil_score": 810,
+        "bank_asset_value": 8500000
     }
     
     print("="*50)

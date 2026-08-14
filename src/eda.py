@@ -53,7 +53,7 @@ def run_eda(input_path):
     plt.close()
 
     # 5. Categorical distributions & Approval rate
-    cat_cols = ['education', 'self_employed', 'no_of_dependents', 'loan_term']
+    cat_cols = ['education', 'employment_type', 'no_of_dependents', 'loan_term']
     
     # Map target to 1/0 for approval rate calculation
     df['approved_num'] = (df['loan_status'] == 'Approved').astype(int)

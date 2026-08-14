@@ -6,3 +6,5 @@ shap
 matplotlib
 seaborn
 joblib
+fastapi
+uvicorn

@@ -9,6 +9,12 @@ def clean_data(input_path, output_path):
 
     # Load data
     df = pd.read_csv(input_path)
+    
+    # Fix typo in the new dataset header
+    if '0_of_dependents' in df.columns:
+        df = df.rename(columns={'0_of_dependents': 'no_of_dependents'})
+        print("[CLEANING] Renamed column '0_of_dependents' to 'no_of_dependents'.")
+        
     initial_rows, initial_cols = df.shape
     print(f"\nLoaded dataset with {initial_rows} rows and {initial_cols} columns.")
 
@@ -105,7 +111,7 @@ def clean_data(input_path, output_path):
 
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
-    input_file = os.path.join("data", "loan.csv")
+    input_file = os.path.join("data", "LOAN1.csv")
     output_file = os.path.join("data", "cleaned_loan.csv")
     if os.path.exists(input_file):
         clean_data(input_file, output_file)
