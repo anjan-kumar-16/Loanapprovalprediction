@@ -109,10 +109,10 @@ function App() {
             </div>
 
             <div className="form-group">
-              <label>Employment</label>
+              <label>Employment Type</label>
               <select name="self_employed" value={formData.self_employed} onChange={handleChange} className="form-control">
-                <option value="Yes">Self Employed</option>
-                <option value="No">Salaried (No)</option>
+                <option value="Yes">Employed</option>
+                <option value="No">Unemployed</option>
               </select>
             </div>
 
