@@ -52,8 +52,8 @@ def run_eda(input_path):
     plt.savefig('reports/figures/correlation_heatmap.png', bbox_inches='tight')
     plt.close()
 
-    # 5. Categorical distributions & Approval rate
-    cat_cols = ['education', 'self_employed', 'no_of_dependents', 'loan_term']
+    # 5. Categorical distributions & Approval    
+    cat_cols = ['education', 'employment_type', 'no_of_dependents', 'loan_term']
     
     # Map target to 1/0 for approval rate calculation
     df['approved_num'] = (df['loan_status'] == 'Approved').astype(int)

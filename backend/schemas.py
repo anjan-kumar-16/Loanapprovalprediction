@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class LoanApplication(BaseModel):
     no_of_dependents: int
     education: str
-    self_employed: str
+    employment_type: str
     income_annum: float
     loan_amount: float
     loan_term: int
