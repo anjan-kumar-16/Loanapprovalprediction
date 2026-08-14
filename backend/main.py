@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from backend.schemas import LoanApplication
-from backend.services.prediction_service import predict_loan
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.predict import predict_loan
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -41,5 +46,7 @@ def health_check():
 
 @app.post("/predict")
 def predict(application: LoanApplication):
-    result = predict_loan(application)
+    # Convert Pydantic object to dict so predict_loan can read it
+    data = application.model_dump()
+    result = predict_loan(data)
     return result
