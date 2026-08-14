@@ -98,7 +98,8 @@ def train_random_forest():
     results = evaluate_model(dummy_model, X_train, y_train, "Random Forest (CV)")
     
     joblib.dump(pipeline, "models/random_forest.pkl")
-    print("\n[SUCCESS] Saved Random Forest to models/random_forest.pkl")
+    joblib.dump(pipeline, "models/loan_approval_model.pkl")
+    print("\n[SUCCESS] Saved Random Forest to models/random_forest.pkl and models/loan_approval_model.pkl")
     
     df_results = pd.read_csv("reports/model_comparison.csv")
     df_results = pd.concat([df_results, pd.DataFrame([results])], ignore_index=True)

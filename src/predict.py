@@ -42,8 +42,7 @@ def predict_loan(application_data):
     # Validate Input
     required_keys = [
         "no_of_dependents", "education", "self_employed", "income_annum",
-        "loan_amount", "loan_term", "cibil_score", "residential_assets_value",
-        "commercial_assets_value", "luxury_assets_value", "bank_asset_value"
+        "loan_amount", "loan_term", "cibil_score", "bank_asset_value"
     ]
     
     for key in required_keys:
@@ -54,12 +53,7 @@ def predict_loan(application_data):
     df = pd.DataFrame([application_data])
     
     # Feature Engineering (Dynamically apply what we did in training)
-    df["total_assets"] = (
-        df["residential_assets_value"] +
-        df["commercial_assets_value"] +
-        df["luxury_assets_value"] +
-        df["bank_asset_value"]
-    )
+    df["total_assets"] = df["bank_asset_value"]
     df["loan_to_income"] = df["loan_amount"] / (df["income_annum"] + 1)
     df["loan_to_asset"] = df["loan_amount"] / (df["total_assets"] + 1)
     
@@ -108,9 +102,6 @@ def predict_loan(application_data):
             "loan_amount": "Requesting a smaller loan amount may improve your chances of approval.",
             "loan_term": "Try adjusting your loan term (a longer term reduces monthly burden).",
             "income_annum": "Increasing your co-applicant's income or showing additional income sources may help.",
-            "residential_assets_value": "Declaring additional residential assets can strengthen your application.",
-            "commercial_assets_value": "Declaring additional commercial assets can strengthen your application.",
-            "luxury_assets_value": "Declaring additional luxury assets can strengthen your application.",
             "bank_asset_value": "Increasing your bank balance and savings can improve your approval odds."
         }
         
@@ -158,9 +149,6 @@ if __name__ == "__main__":
         "loan_amount": 10000000,
         "loan_term": 10,
         "cibil_score": 850,
-        "residential_assets_value": 5000000,
-        "commercial_assets_value": 1000000,
-        "luxury_assets_value": 2000000,
         "bank_asset_value": 1500000
     }
     

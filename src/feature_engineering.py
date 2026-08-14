@@ -11,12 +11,7 @@ def engineer_features(df):
     print("="*50)
     
     # 1. Total Assets
-    df["total_assets"] = (
-        df["residential_assets_value"] +
-        df["commercial_assets_value"] +
-        df["luxury_assets_value"] +
-        df["bank_asset_value"]
-    )
+    df["total_assets"] = df["bank_asset_value"]
     print(" -> Added 'total_assets'")
     
     # 2. Loan-to-Income Ratio

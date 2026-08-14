@@ -74,8 +74,7 @@ def clean_data(input_path, output_path):
     # 5. Invalid values check (Negative financials, impossible terms)
     # What was found: Negative financial values or invalid terms
     # Why it matters: Negative income or loan amounts are data entry errors and distort modeling.
-    financial_cols = ['income_annum', 'loan_amount', 'residential_assets_value', 
-                      'commercial_assets_value', 'luxury_assets_value', 'bank_asset_value']
+    financial_cols = ['income_annum', 'loan_amount', 'bank_asset_value']
     
     invalid_financial_rows = 0
     for col in financial_cols:
