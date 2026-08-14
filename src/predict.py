@@ -148,7 +148,7 @@ if __name__ == "__main__":
         "income_annum": 8000000,
         "loan_amount": 10000000,
         "loan_term": 10,
-        "cibil_score": 850,
+        "cibil_score": 300,
         "bank_asset_value": 1500000
     }
     
