@@ -14,7 +14,7 @@ def train_logistic_regression():
     print("STAGE 4: TRAIN LOGISTIC REGRESSION (BASELINE)")
     print("="*50)
     
-    input_file = os.path.join("data", "engineered_loan.csv")
+    input_file = os.path.join("data", "cleaned_loan.csv")
     X_train, X_test, y_train, y_test, preprocessor = get_data_and_preprocessor(input_file)
     
     # Define model
@@ -74,7 +74,7 @@ def train_random_forest():
     print("STAGE 5: TRAIN RANDOM FOREST")
     print("="*50)
     
-    input_file = os.path.join("data", "engineered_loan.csv")
+    input_file = os.path.join("data", "cleaned_loan.csv")
     X_train, X_test, y_train, y_test, preprocessor = get_data_and_preprocessor(input_file)
     
     model = RandomForestClassifier(random_state=42, n_estimators=100)
@@ -112,7 +112,7 @@ def train_xgboost():
     print("STAGE 6: TRAIN XGBOOST")
     print("="*50)
     
-    input_file = os.path.join("data", "engineered_loan.csv")
+    input_file = os.path.join("data", "cleaned_loan.csv")
     X_train, X_test, y_train, y_test, preprocessor = get_data_and_preprocessor(input_file)
     
     model = XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss')

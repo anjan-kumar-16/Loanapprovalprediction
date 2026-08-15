@@ -27,11 +27,12 @@ except:
 
 def get_feature_names(preprocessor):
     """Extract feature names from the ColumnTransformer"""
-    cat_encoder = preprocessor.named_transformers_['cat'].named_steps['encoder']
-    cat_cols = preprocessor.transformers_[1][2]
+    col_transformer = preprocessor.named_steps['col_transformer']
+    cat_encoder = col_transformer.named_transformers_['cat'].named_steps['encoder']
+    cat_cols = col_transformer.transformers_[1][2]
     cat_feature_names = cat_encoder.get_feature_names_out(cat_cols).tolist()
     
-    num_cols = preprocessor.transformers_[0][2]
+    num_cols = col_transformer.transformers_[0][2]
     return num_cols + cat_feature_names
 
 def predict_loan(application_data):
@@ -55,10 +56,7 @@ def predict_loan(application_data):
     # Create DataFrame
     df = pd.DataFrame([application_data])
     
-    # Feature Engineering (Dynamically apply what we did in training)
-    df["total_assets"] = df["bank_asset_value"]
-    df["loan_to_income"] = df["loan_amount"] / (df["income_annum"] + 1)
-    df["loan_to_asset"] = df["loan_amount"] / (df["total_assets"] + 1)
+    # Feature Engineering is now handled natively by the model Pipeline
     
     # Predict
     try:
