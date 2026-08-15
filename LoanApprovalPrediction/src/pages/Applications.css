@@ -1,0 +1,1123 @@
+/* =========================================================
+   APPLICATIONS PAGE
+========================================================= */
+
+.applications-page {
+  min-height: 100vh;
+  padding: 32px 40px 35px;
+
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(117, 76, 232, 0.09),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(52, 127, 241, 0.07),
+      transparent 30%
+    ),
+    #f6f8fc;
+
+  color: #17345f;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.applications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 28px;
+}
+
+.applications-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #754ce8;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+.applications-header h1 {
+  margin: 0;
+
+  color: #102f59;
+
+  font-size: 42px;
+  line-height: 1.1;
+
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.applications-header p {
+  margin: 8px 0 0;
+
+  color: #71819b;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   NEW APPLICATION BUTTON
+========================================================= */
+
+.new-application-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 19px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #754ce8,
+    #6241d8
+  );
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(117, 76, 232, 0.22);
+
+  transition: all 0.2s ease;
+}
+
+.new-application-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 26px
+    rgba(117, 76, 232, 0.30);
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.application-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+
+  margin-bottom: 24px;
+}
+
+.application-stat-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 96px;
+
+  padding: 20px;
+
+  overflow: hidden;
+
+  border:
+    1px solid #e1e7f0;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 8px 25px
+    rgba(30, 50, 80, 0.055);
+
+  transition: all 0.2s ease;
+}
+
+.application-stat-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 13px 30px
+    rgba(30, 50, 80, 0.09);
+}
+
+
+/* STAT ICON */
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  margin-right: 14px;
+
+  border-radius: 12px;
+}
+
+.stat-icon.blue {
+  color: #754ce8;
+  background: #f0ebff;
+}
+
+.stat-icon.green {
+  color: #13a66b;
+  background: #e5f8ef;
+}
+
+.stat-icon.orange {
+  color: #e39a20;
+  background: #fff4dd;
+}
+
+.stat-icon.red {
+  color: #df4f5e;
+  background: #fff0f2;
+}
+
+
+/* STAT TEXT */
+
+.application-stat-card span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #667892;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.application-stat-card strong {
+  display: block;
+
+  color: #102f59;
+
+  font-size: 25px;
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   MAIN APPLICATION CARD
+========================================================= */
+
+.applications-card {
+  overflow: hidden;
+
+  border:
+    1px solid #dfe6f0;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  box-shadow:
+    0 12px 35px
+    rgba(30, 50, 80, 0.06);
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.applications-toolbar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 20px 24px;
+
+  border-bottom:
+    1px solid #e8edf4;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+  width: 420px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 11px 15px;
+
+  border:
+    1px solid #dce4ef;
+
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  color: #7b8ca4;
+
+  transition: all 0.2s ease;
+}
+
+.search-box:focus-within {
+  border-color: #754ce8;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(117, 76, 232, 0.10);
+}
+
+.search-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #203a61;
+
+  font-size: 14px;
+}
+
+.search-box input::placeholder {
+  color: #a1aec0;
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+========================================================= */
+
+.filter-buttons {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #63758e;
+}
+
+.filter-button {
+  padding: 9px 16px;
+
+  border:
+    1px solid #dce4ef;
+
+  border-radius: 9px;
+
+  color: #60718b;
+
+  background: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+  border-color: #754ce8;
+
+  color: #754ce8;
+
+  background: #faf8ff;
+}
+
+.filter-button.active {
+  color: #ffffff;
+
+  border-color: #754ce8;
+
+  background: #754ce8;
+
+  box-shadow:
+    0 5px 14px
+    rgba(117, 76, 232, 0.20);
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.applications-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.applications-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  min-width: 1050px;
+}
+
+
+/* =========================================================
+   TABLE HEADINGS
+========================================================= */
+
+.applications-table thead {
+  background:
+    linear-gradient(
+      90deg,
+      #fafbff,
+      #f7f9fd
+    );
+}
+
+.applications-table th {
+  height: 58px;
+
+  padding: 0 18px;
+
+  border-bottom:
+    1px solid #e4e9f1;
+
+  color: #244a78;
+
+  text-align: left;
+
+  font-size: 11px;
+  font-weight: 850;
+
+  letter-spacing: 0.8px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   COLUMN WIDTHS
+========================================================= */
+
+.applications-table th:nth-child(1),
+.applications-table td:nth-child(1) {
+  width: 13%;
+}
+
+.applications-table th:nth-child(2),
+.applications-table td:nth-child(2) {
+  width: 18%;
+}
+
+.applications-table th:nth-child(3),
+.applications-table td:nth-child(3) {
+  width: 12%;
+}
+
+.applications-table th:nth-child(4),
+.applications-table td:nth-child(4) {
+  width: 15%;
+}
+
+.applications-table th:nth-child(5),
+.applications-table td:nth-child(5) {
+  width: 10%;
+}
+
+.applications-table th:nth-child(6),
+.applications-table td:nth-child(6) {
+  width: 13%;
+}
+
+.applications-table th:nth-child(7),
+.applications-table td:nth-child(7) {
+  width: 11%;
+}
+
+.applications-table th:nth-child(8),
+.applications-table td:nth-child(8) {
+  width: 8%;
+}
+
+
+/* =========================================================
+   TABLE ROW
+========================================================= */
+
+.applications-table tbody tr {
+  height: 86px;
+
+  border-bottom:
+    1px solid #edf1f6;
+
+  transition:
+    background 0.2s ease;
+}
+
+.applications-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.applications-table tbody tr:hover {
+  background:
+    linear-gradient(
+      90deg,
+      #fcfbff,
+      #f9fbff
+    );
+}
+
+.applications-table td {
+  padding: 10px 18px;
+
+  color: #526a89;
+
+  font-size: 13px;
+
+  vertical-align: middle;
+}
+
+
+/* =========================================================
+   APPLICATION NUMBER
+========================================================= */
+
+.application-id {
+  display: flex;
+  align-items: center;
+
+  min-width: 100px;
+}
+
+.application-id span {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 11px;
+
+  border:
+    1px solid #ddd4ff;
+
+  border-radius: 8px;
+
+  color: #6844e8;
+
+  background: #f1edff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.3px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   APPLICANT
+========================================================= */
+
+.applicant-name {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  color: #7047e8;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f0ebff,
+      #e9f1ff
+    );
+
+  font-size: 14px;
+  font-weight: 800;
+
+  border:
+    1px solid #e1d9ff;
+}
+
+.applicant-name strong {
+  display: block;
+
+  color: #173d6b;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   INCOME
+========================================================= */
+
+.applications-table td:nth-child(3) {
+  color: #496786;
+
+  font-weight: 650;
+}
+
+
+/* =========================================================
+   LOAN AMOUNT
+========================================================= */
+
+.loan-value {
+  display: flex;
+
+  align-items: center;
+
+  gap: 2px;
+
+  color: #6844e8 !important;
+
+  font-size: 14px !important;
+  font-weight: 800 !important;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.score-cell {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 6px;
+}
+
+.score-number {
+  font-size: 15px;
+
+  font-weight: 850;
+}
+
+.score-number.good {
+  color: #0e9f62;
+}
+
+.score-number.medium {
+  color: #d88b13;
+}
+
+.score-number.low {
+  color: #df4353;
+}
+
+
+/* SCORE PROGRESS */
+
+.mini-progress {
+  width: 64px;
+  height: 5px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #e9edf4;
+}
+
+.mini-progress > div {
+  height: 100%;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #4b8cf5,
+      #754ce8
+    );
+
+  transition: width 0.3s ease;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 8px 12px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* APPROVED */
+
+.status-badge.approved {
+  color: #078a58;
+
+  background: #e7f8ef;
+
+  border:
+    1px solid #c6eedb;
+
+  box-shadow:
+    0 2px 6px
+    rgba(20, 169, 109, 0.08);
+}
+
+
+/* PENDING */
+
+.status-badge.pending {
+  color: #c87b0b;
+
+  background: #fff5df;
+
+  border:
+    1px solid #f4ddb0;
+
+  box-shadow:
+    0 2px 6px
+    rgba(226, 154, 32, 0.08);
+}
+
+
+/* REJECTED */
+
+.status-badge.rejected {
+  color: #d93649;
+
+  background: #fff0f2;
+
+  border:
+    1px solid #f5cfd5;
+
+  box-shadow:
+    0 2px 6px
+    rgba(228, 82, 97, 0.08);
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.date-cell {
+  color: #647995 !important;
+
+  font-size: 12px !important;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   EYE / VIEW BUTTON
+========================================================= */
+
+.view-button {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid #b9d5ff;
+
+  border-radius: 10px;
+
+  color: #347ff1;
+
+  background: #edf5ff;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.view-button svg {
+  stroke-width: 2.4;
+}
+
+.view-button:hover {
+  color: #ffffff;
+
+  border-color: #347ff1;
+
+  background: #347ff1;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 16px
+    rgba(52, 127, 241, 0.25);
+}
+
+
+/* =========================================================
+   EMPTY APPLICATIONS
+========================================================= */
+
+.empty-applications {
+  padding: 70px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  color: #754ce8;
+}
+
+.empty-applications h3 {
+  margin: 14px 0 5px;
+
+  color: #203a61;
+
+  font-size: 17px;
+}
+
+.empty-applications p {
+  margin: 0;
+
+  color: #8d9bb0;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.applications-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 16px 24px;
+
+  border-top:
+    1px solid #edf1f6;
+
+  color: #8795a9;
+
+  background: #ffffff;
+
+  font-size: 12px;
+}
+
+.applications-footer strong {
+  color: #526b88;
+}
+
+.footer-summary {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: #71839d;
+}
+
+.footer-summary svg {
+  color: #754ce8;
+}
+
+.footer-summary strong {
+  color: #754ce8;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1250px) {
+
+  .applications-page {
+    padding: 28px 25px;
+  }
+
+  .application-stats {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .applications-table {
+    min-width: 1000px;
+  }
+}
+
+
+@media (max-width: 900px) {
+
+  .applications-header {
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .applications-toolbar {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .filter-buttons {
+    justify-content: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+  .applications-table {
+    min-width: 1050px;
+  }
+}
+
+
+@media (max-width: 650px) {
+
+  .applications-page {
+    padding: 22px 15px;
+  }
+
+  .applications-header h1 {
+    font-size: 32px;
+  }
+
+  .application-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .new-application-button {
+    width: 100%;
+  }
+
+  .applications-toolbar {
+    padding: 16px;
+  }
+
+  .applications-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #173d6b;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 0;
+}
+
+.modal-close:hover {
+  color: #ef4444;
+}
+
+.modal-body p {
+  margin: 8px 0;
+  color: #475569;
+}
+
+.modal-body strong {
+  color: #1e293b;
+  margin-right: 8px;
+}
+
+.modal-body hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* =========================================================
+   AI RECOMMENDATION BOX
+========================================================= */
+
+.ai-recommendation-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.ai-rec-header {
+  margin-bottom: 10px;
+}
+
+.ai-rec-header .badge {
+  background: #6366f1;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   MODAL ACTIONS (APPROVE/REJECT)
+========================================================= */
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-approve, .btn-reject {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+}
+
+.btn-approve {
+  background: #10b981;
+}
+
+.btn-approve:hover {
+  background: #059669;
+}
+
+.btn-reject {
+  background: #ef4444;
+}
+
+.btn-reject:hover {
+  background: #dc2626;
+}

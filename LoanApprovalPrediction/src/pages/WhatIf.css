@@ -1,0 +1,785 @@
+.whatif-page {
+  min-height: 100vh;
+
+  padding: 30px;
+
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(117, 76, 232, .10),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 5% 70%,
+      rgba(79, 140, 255, .08),
+      transparent 30%
+    ),
+    #f6f8fc;
+}
+
+
+/* HEADER */
+
+.whatif-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  margin-bottom: 20px;
+}
+
+.whatif-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: #754ce8;
+
+  font-size: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.whatif-header h1 {
+  margin-top: 7px;
+
+  color: #29364d;
+
+  font-size: 26px;
+}
+
+.whatif-header p {
+  margin-top: 5px;
+
+  color: #8e98aa;
+
+  font-size: 8px;
+}
+
+.reset-button {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #dfe5ee;
+
+  border-radius: 8px;
+
+  color: #68758a;
+
+  background: #ffffff;
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* RESULT */
+
+.whatif-result {
+  display: grid;
+
+  grid-template-columns:
+    auto 1fr auto auto;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 20px;
+
+  margin-bottom: 15px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 25px
+    rgba(30, 50, 80, .05);
+}
+
+.whatif-result.approved {
+  border: 1px solid #d1efdf;
+}
+
+.whatif-result.rejected {
+  border: 1px solid #f2d4d4;
+}
+
+.whatif-result-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 13px;
+}
+
+.approved .whatif-result-icon {
+  color: #15945b;
+
+  background: #eaf9f1;
+}
+
+.rejected .whatif-result-icon {
+  color: #dc5151;
+
+  background: #fff0f0;
+}
+
+.whatif-result-text span,
+.whatif-probability span {
+  display: block;
+
+  color: #9ba4b2;
+
+  font-size: 5px;
+
+  font-weight: 800;
+
+  letter-spacing: .8px;
+}
+
+.whatif-result-text h2 {
+  margin-top: 4px;
+
+  color: #465269;
+
+  font-size: 16px;
+}
+
+.whatif-result-text p {
+  margin-top: 3px;
+
+  color: #929bab;
+
+  font-size: 6px;
+}
+
+.whatif-probability {
+  text-align: center;
+}
+
+.whatif-probability strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #4f8cff;
+
+  font-size: 20px;
+}
+
+.risk-badge {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 7px 9px;
+
+  border-radius: 20px;
+
+  font-size: 6px;
+
+  font-weight: 800;
+}
+
+.risk-badge.low {
+  color: #15945b;
+
+  background: #eaf9f1;
+}
+
+.risk-badge.medium {
+  color: #b87a1e;
+
+  background: #fff5df;
+}
+
+.risk-badge.high {
+  color: #dc5151;
+
+  background: #fff0f0;
+}
+
+
+/* MAIN */
+
+.whatif-layout {
+  display: grid;
+
+  grid-template-columns:
+    1.2fr .8fr;
+
+  gap: 15px;
+}
+
+.whatif-controls,
+.whatif-analysis {
+  padding: 20px;
+
+  border:
+    1px solid #e3e8f0;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 7px 25px
+    rgba(30, 50, 80, .035);
+}
+
+.whatif-card-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 20px;
+}
+
+.whatif-title-icon {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 8px;
+
+  color: #754ce8;
+
+  background: #f0ebff;
+}
+
+.whatif-title-icon.blue {
+  color: #4f8cff;
+
+  background: #edf4ff;
+}
+
+.whatif-card-title h2 {
+  color: #4d596d;
+
+  font-size: 11px;
+}
+
+.whatif-card-title p {
+  margin-top: 3px;
+
+  color: #9ca5b3;
+
+  font-size: 6px;
+}
+
+
+/* SLIDER */
+
+.scenario-slider {
+  margin-bottom: 22px;
+}
+
+.scenario-slider-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 9px;
+}
+
+.scenario-slider-header label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #69758a;
+
+  font-size: 7px;
+
+  font-weight: 700;
+}
+
+.scenario-slider-header label span {
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 7px;
+
+  color: #6685c4;
+
+  background: #edf2fb;
+}
+
+.scenario-slider-header strong {
+  color: #4f8cff;
+
+  font-size: 8px;
+}
+
+.scenario-slider input {
+  width: 100%;
+
+  height: 5px;
+
+  appearance: none;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background:
+    linear-gradient(
+      to right,
+      #4f8cff 0%,
+      #754ce8 100%
+    );
+
+  cursor: pointer;
+}
+
+.scenario-slider input::-webkit-slider-thumb {
+  appearance: none;
+
+  width: 15px;
+  height: 15px;
+
+  border: 3px solid #ffffff;
+
+  border-radius: 50%;
+
+  background: #4f8cff;
+
+  box-shadow:
+    0 2px 8px
+    rgba(79, 140, 255, .35);
+}
+
+.range-labels {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 5px;
+
+  color: #b0b7c2;
+
+  font-size: 5px;
+}
+
+
+/* SELECT */
+
+.scenario-select {
+  margin-top: 4px;
+}
+
+.scenario-select label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #69758a;
+
+  font-size: 7px;
+
+  font-weight: 700;
+}
+
+.scenario-select select {
+  width: 100%;
+
+  height: 38px;
+
+  padding: 0 10px;
+
+  border:
+    1px solid #e1e6ee;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  color: #59667b;
+
+  background: #fafbfc;
+
+  font-size: 7px;
+}
+
+
+/* ANALYSIS CIRCLE */
+
+.scenario-score {
+  display: flex;
+
+  justify-content: center;
+
+  margin: 8px 0 20px;
+}
+
+.scenario-score-circle {
+  width: 145px;
+  height: 145px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      #4f8cff 0deg,
+      #754ce8 180deg,
+      #e9edf3 180deg
+    );
+}
+
+.scenario-score-circle > div {
+  width: 108px;
+  height: 108px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+.scenario-score-circle strong {
+  color: #435066;
+
+  font-size: 25px;
+}
+
+.scenario-score-circle span {
+  margin-top: 4px;
+
+  color: #9da6b4;
+
+  font-size: 6px;
+}
+
+
+/* METRICS */
+
+.scenario-metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 8px;
+}
+
+.scenario-metric {
+  padding: 11px;
+
+  border-radius: 8px;
+
+  background: #f8f9fb;
+}
+
+.scenario-metric span {
+  display: block;
+
+  color: #9ca5b3;
+
+  font-size: 5px;
+}
+
+.scenario-metric strong {
+  display: block;
+
+  margin-top: 4px;
+
+  overflow: hidden;
+
+  color: #566277;
+
+  font-size: 8px;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* INSIGHT */
+
+.scenario-insight {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 12px;
+
+  padding: 11px;
+
+  border-radius: 8px;
+
+  color: #754ce8;
+
+  background: #f5f1ff;
+}
+
+.scenario-insight > svg {
+  flex-shrink: 0;
+}
+
+.scenario-insight strong {
+  display: block;
+
+  color: #66548d;
+
+  font-size: 7px;
+}
+
+.scenario-insight p {
+  margin-top: 3px;
+
+  color: #9186a8;
+
+  font-size: 6px;
+
+  line-height: 1.5;
+}
+
+
+/* ACTIONS */
+
+.whatif-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 9px;
+
+  margin-top: 15px;
+}
+
+.primary-whatif-button,
+.secondary-whatif-button {
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 14px;
+
+  border-radius: 8px;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.primary-whatif-button {
+  border: none;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #4f8cff,
+      #754ce8
+    );
+}
+
+.secondary-whatif-button {
+  border:
+    1px solid #dfe5ee;
+
+  color: #68758a;
+
+  background: #ffffff;
+}
+
+
+/* EMPTY */
+
+.whatif-empty {
+  min-height: 80vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.whatif-empty-icon {
+  width: 62px;
+  height: 62px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 17px;
+
+  color: #754ce8;
+
+  background: #f0ebff;
+}
+
+.whatif-empty h1 {
+  margin-top: 15px;
+
+  color: #465269;
+
+  font-size: 21px;
+}
+
+.whatif-empty p {
+  max-width: 390px;
+
+  margin-top: 6px;
+
+  color: #929cab;
+
+  font-size: 7px;
+
+  line-height: 1.6;
+}
+
+.whatif-empty button {
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 16px;
+
+  padding: 0 14px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #4f8cff,
+      #754ce8
+    );
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .whatif-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .whatif-result {
+    grid-template-columns:
+      auto 1fr;
+  }
+
+  .whatif-probability,
+  .risk-badge {
+    margin-top: 5px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .whatif-page {
+    padding: 18px;
+  }
+
+  .whatif-header {
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .whatif-result {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .whatif-probability {
+    width: 100%;
+
+    text-align: left;
+  }
+
+  .risk-badge {
+    width: fit-content;
+  }
+
+  .whatif-actions {
+    flex-direction: column;
+  }
+
+  .primary-whatif-button,
+  .secondary-whatif-button {
+    width: 100%;
+  }
+}

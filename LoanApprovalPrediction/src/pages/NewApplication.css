@@ -1,0 +1,446 @@
+/* ================================
+   NEW APPLICATION PAGE
+================================ */
+
+.new-application-page {
+  min-height: 100vh;
+  padding: 30px;
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(117, 76, 232, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 70%,
+      rgba(79, 140, 255, 0.10),
+      transparent 28%
+    ),
+    #f6f8fc;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.application-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.application-eyebrow {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  color: #754ce8;
+  background: #f1edff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.application-header h1 {
+  margin: 10px 0 0;
+  color: #27344b;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.application-header p {
+  max-width: 600px;
+  margin-top: 7px;
+  color: #8d97a9;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.secure-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: 1px solid #d9efe4;
+  border-radius: 10px;
+  background: #f4fcf7;
+  color: #15945b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* ================================
+   CARDS
+================================ */
+
+.application-card {
+  padding: 22px;
+  border: 1px solid #e3e8f0;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 7px 25px rgba(30, 50, 80, 0.05);
+}
+
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 22px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #465269;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  color: #9aa3b4;
+  font-size: 13px;
+}
+
+
+/* ================================
+   SECTION ICONS
+================================ */
+
+.section-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.section-icon.purple {
+  color: #754ce8;
+  background: #f1edff;
+}
+
+.section-icon.blue {
+  color: #4f8cff;
+  background: #edf4ff;
+}
+
+.section-icon.green {
+  color: #15945b;
+  background: #eaf9f1;
+}
+
+.section-icon.orange {
+  color: #e78b24;
+  background: #fff3e4;
+}
+
+
+/* ================================
+   FORM GRID
+================================ */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+
+/* ================================
+   FORM GROUP
+================================ */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  color: #69758a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-group small {
+  color: #9aa3b4;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* ================================
+   SELECT
+================================ */
+
+.form-group select {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid #e0e5ed;
+  border-radius: 9px;
+  outline: none;
+  color: #4a566b;
+  background: #fbfcfe;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.form-group select:focus {
+  border-color: #6d8fff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.09);
+}
+
+
+/* ================================
+   INPUT WITH ICON
+================================ */
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  left: 12px;
+  color: #9aa6b9;
+  pointer-events: none;
+}
+
+.input-with-icon input {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px 0 35px;
+  border: 1px solid #e0e5ed;
+  border-radius: 9px;
+  outline: none;
+  color: #4a566b;
+  background: #fbfcfe;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.input-with-icon input:focus {
+  border-color: #6d8fff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.09);
+}
+
+.input-with-icon input::placeholder {
+  color: #b0b7c3;
+}
+
+
+/* ================================
+   LOAN TERM UNIT
+================================ */
+
+.input-unit {
+  position: absolute;
+  right: 13px;
+  color: #8d97a9;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+
+/* ================================
+   CREDIT SECTION
+================================ */
+
+.credit-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+}
+
+.credit-input-area .form-group {
+  max-width: 400px;
+}
+
+
+/* ================================
+   CIBIL GUIDE
+================================ */
+
+.cibil-guide {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 3px;
+}
+
+.cibil-guide > div {
+  padding: 10px;
+  border: 1px solid #e7ebf2;
+  border-radius: 8px;
+  text-align: center;
+  background: #fafbfe;
+}
+
+.cibil-guide span {
+  display: block;
+  color: #4f5d73;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.cibil-guide small {
+  display: block;
+  margin-top: 3px;
+  color: #9aa3b4;
+  font-size: 11px;
+}
+
+
+/* ================================
+   SUBMIT AREA
+================================ */
+
+.application-submit-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 20px;
+  border: 1px solid #e3e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 7px 25px rgba(30, 50, 80, 0.04);
+}
+
+
+/* ================================
+   SUBMIT INFO
+================================ */
+
+.submit-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8994a7;
+}
+
+.submit-info svg {
+  color: #15945b;
+  flex-shrink: 0;
+}
+
+.submit-info strong {
+  display: block;
+  color: #4b5870;
+  font-size: 14px;
+}
+
+.submit-info span {
+  display: block;
+  margin-top: 3px;
+  color: #9aa3b4;
+  font-size: 12px;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.predict-button {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 9px;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #4f8cff,
+    #754ce8
+  );
+  box-shadow: 0 9px 22px rgba(79, 140, 255, 0.22);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.predict-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 13px 28px rgba(79, 140, 255, 0.30);
+}
+
+.predict-button:active {
+  transform: translateY(0);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .new-application-page {
+    padding: 20px;
+  }
+
+  .application-header {
+    flex-direction: column;
+  }
+
+  .application-header h1 {
+    font-size: 24px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .application-submit-area {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .predict-button {
+    width: 100%;
+  }
+
+  .cibil-guide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,179 @@
+.prediction-loading-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(79, 140, 255, 0.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(124, 76, 232, 0.12),
+      transparent 30%
+    ),
+    #f5f7fc;
+}
+
+.loading-card {
+  width: 540px;
+  padding: 42px;
+  text-align: center;
+  border: 1px solid #e5eaf3;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 25px 70px
+    rgba(40, 55, 90, 0.12);
+}
+
+.ai-loader {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  color: white;
+  background:
+    linear-gradient(
+      135deg,
+      #4f8cff,
+      #7849e8
+    );
+  box-shadow:
+    0 12px 30px
+    rgba(79, 140, 255, 0.28);
+}
+
+.loader-ring {
+  position: absolute;
+  inset: -8px;
+  border: 2px solid transparent;
+  border-top-color: #4f8cff;
+  border-right-color: #7849e8;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-label {
+  color: #4f8cff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.loading-card h1 {
+  margin-top: 9px;
+  color: #172033;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.loading-card > p {
+  max-width: 420px;
+  margin: 10px auto 25px;
+  color: #8994a8;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.loading-progress {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e9edf5;
+}
+
+.loading-progress-bar {
+  width: 65%;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      #4f8cff,
+      #7849e8
+    );
+  animation: progress 2.2s ease-in-out infinite;
+}
+
+@keyframes progress {
+  0% {
+    width: 10%;
+  }
+
+  50% {
+    width: 75%;
+  }
+
+  100% {
+    width: 95%;
+  }
+}
+
+.processing-text {
+  display: block;
+  margin-top: 9px;
+  color: #8f99aa;
+  font-size: 8px;
+}
+
+.analysis-items {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.analysis-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #edf0f5;
+  color: #657187;
+  font-size: 9px;
+}
+
+.analysis-item svg {
+  color: #4f8cff;
+}
+
+.analysis-item span {
+  flex: 1;
+}
+
+.analysis-item b {
+  color: #20a565;
+  font-size: 13px;
+}
+
+.analysis-item i {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #dfe5ef;
+  border-top-color: #4f8cff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@media (max-width: 600px) {
+  .loading-card {
+    width: 100%;
+    padding: 30px 22px;
+  }
+
+  .loading-card h1 {
+    font-size: 22px;
+  }
+}

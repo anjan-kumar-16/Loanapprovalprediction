@@ -1,0 +1,415 @@
+/* =========================================
+   PREDICTION PAGE
+========================================= */
+
+.prediction-page {
+  min-height: 100vh;
+  padding: 32px;
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(117, 76, 232, 0.13),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(79, 140, 255, 0.06),
+      transparent 25%
+    ),
+    #f7f8fd;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.prediction-header {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #53627b;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.back-link:hover {
+  color: #754ce8;
+}
+
+.prediction-heading span {
+  color: #754ce8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.prediction-heading h1 {
+  margin: 6px 0 0;
+  color: #17284a;
+  font-size: 34px;
+  font-weight: 850;
+  letter-spacing: -0.8px;
+}
+
+.prediction-heading p {
+  margin: 8px 0 0;
+  color: #8a95a8;
+  font-size: 12px;
+}
+
+.application-id {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  border: 1px solid #e4ddf8;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.application-id span {
+  color: #754ce8;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.application-id strong {
+  color: #293752;
+  font-size: 12px;
+}
+
+/* =========================================
+   MAIN RESULT
+========================================= */
+
+.prediction-result-card {
+  position: relative;
+  overflow: hidden;
+  padding: 34px;
+  border: 1px solid #e5e9f1;
+  border-radius: 18px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(30, 45, 75, 0.06);
+}
+
+.prediction-result-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #754ce8;
+}
+
+.prediction-result-card.approved::before {
+  background: #24aa70;
+}
+
+.prediction-result-card.rejected::before {
+  background: #e55b68;
+}
+
+.result-icon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 13px;
+  border-radius: 50%;
+  color: #24aa70;
+  background: #e9f9f1;
+}
+
+.rejected .result-icon {
+  color: #e55b68;
+  background: #fff0f2;
+}
+
+.result-label {
+  color: #69768c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.prediction-result-card h2 {
+  margin: 10px 0 8px;
+  color: #17284a;
+  font-size: 28px;
+  font-weight: 850;
+}
+
+.result-description {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #7c879a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.confidence-box {
+  width: 120px;
+  margin: 22px auto 0;
+  padding: 13px 20px;
+  border-radius: 12px;
+  background: #f5f1ff;
+}
+
+.confidence-box strong {
+  display: block;
+  color: #754ce8;
+  font-size: 24px;
+  font-weight: 850;
+}
+
+.confidence-box span {
+  display: block;
+  margin-top: 3px;
+  color: #8d97a8;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+/* =========================================
+   METRICS
+========================================= */
+
+.prediction-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.prediction-metric {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 100px;
+  padding: 18px;
+  border: 1px solid #e5e9f1;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(30, 45, 75, 0.04);
+}
+
+.metric-icon {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+
+.metric-icon.purple {
+  color: #754ce8;
+  background: #f0eaff;
+}
+
+.metric-icon.green {
+  color: #24a96f;
+  background: #eaf9f1;
+}
+
+.metric-icon.blue {
+  color: #4d8df5;
+  background: #edf4ff;
+}
+
+.metric-icon.orange {
+  color: #ed9a28;
+  background: #fff4e2;
+}
+
+.prediction-metric span {
+  display: block;
+  color: #8792a5;
+  font-size: 9px;
+}
+
+.prediction-metric strong {
+  display: block;
+  margin-top: 4px;
+  color: #25344f;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.prediction-metric small {
+  display: block;
+  margin-top: 4px;
+  color: #9ba4b3;
+  font-size: 8px;
+}
+
+/* =========================================
+   APPLICANT DETAILS
+========================================= */
+
+.applicant-details-card {
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid #e5e9f1;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 7px 25px rgba(30, 45, 75, 0.04);
+}
+
+.details-header {
+  margin-bottom: 17px;
+}
+
+.details-header h2 {
+  margin: 0;
+  color: #25344f;
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.details-header p {
+  margin: 5px 0 0;
+  color: #9099aa;
+  font-size: 9px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #edf0f5;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+
+.detail-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 9px;
+  color: #754ce8;
+  background: #f0eaff;
+}
+
+.detail-item span {
+  display: block;
+  color: #929bab;
+  font-size: 8px;
+}
+
+.detail-item strong {
+  display: block;
+  margin-top: 4px;
+  color: #4a566c;
+  font-size: 10px;
+}
+
+/* =========================================
+   FOOTER BUTTONS
+========================================= */
+
+.prediction-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.primary-button {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    #754ce8,
+    #6840d7
+  );
+  box-shadow: 0 6px 15px rgba(117, 76, 232, 0.22);
+}
+
+.secondary-button {
+  color: #59657a;
+  border: 1px solid #e0e5ed;
+  background: #fff;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .prediction-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .prediction-page {
+    padding: 20px;
+  }
+
+  .application-id {
+    position: static;
+    width: fit-content;
+    margin-top: 15px;
+  }
+
+  .prediction-heading h1 {
+    font-size: 28px;
+  }
+
+  .prediction-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prediction-footer {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+}
