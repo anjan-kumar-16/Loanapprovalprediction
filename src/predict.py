@@ -9,7 +9,10 @@ def load_model_and_explainer():
     Loads the pipeline and initializes the SHAP explainer
     """
     try:
-        pipeline = joblib.load("models/loan_approval_model.pkl")
+        import os
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        model_path = os.path.join(base_dir, "models", "loan_approval_model.pkl")
+        pipeline = joblib.load(model_path)
         model = pipeline.named_steps['model']
         explainer = shap.TreeExplainer(model)
         return pipeline, explainer
@@ -129,6 +132,25 @@ def predict_loan(application_data):
             "rejection_probability": float(rejection_prob),
             "reasons_for_decision": reasons
         }
+        
+        # Dynamic Risk-Based Interest Rate & EMI (if approved)
+        if prediction_num == 1:
+            # Map probability 0.5-1.0 to Interest Rate 14% to 6%
+            # The safer you are, the lower the interest rate
+            normalized_prob = max(0, min(1, (approval_prob - 0.5) / 0.5))
+            annual_interest_rate = 14.0 - (normalized_prob * 8.0)
+            
+            # EMI Calculation
+            P = application_data["loan_amount"]
+            r = annual_interest_rate / 12 / 100
+            n = application_data["loan_term"] * 12
+            if r > 0 and n > 0:
+                emi = (P * r * ((1 + r) ** n)) / (((1 + r) ** n) - 1)
+            else:
+                emi = P / n if n > 0 else 0
+                
+            result["interest_rate"] = round(annual_interest_rate, 2)
+            result["estimated_emi"] = round(emi, 2)
         
         # Only add suggestions if the loan was rejected
         if prediction_num == 0 and suggestions:
