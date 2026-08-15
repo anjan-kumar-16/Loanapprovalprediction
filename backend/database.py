@@ -3,7 +3,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import pymysql
 
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:mysql@localhost/loan_db"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:mysql@localhost/loan_db")
 
 def create_db_if_not_exists():
     try:

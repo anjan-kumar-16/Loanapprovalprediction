@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 import Sidebar from "./components/Sidebar";
 
@@ -65,6 +66,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Toaster />
       <AppLayout authRole={authRole} setAuthRole={setAuthRole} />
     </BrowserRouter>
   );

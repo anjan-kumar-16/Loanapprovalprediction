@@ -104,7 +104,7 @@ function WhatIf() {
   useEffect(() => {
     const fetchPrediction = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/predict", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/predict`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

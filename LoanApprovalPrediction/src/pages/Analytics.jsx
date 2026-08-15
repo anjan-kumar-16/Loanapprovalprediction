@@ -44,7 +44,7 @@ export default function Analytics() {
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/applications")
+    fetch(`${import.meta.env.VITE_API_URL}/api/applications`)
       .then(res => res.json())
       .then(parsed => {
         setApplications(parsed.map((item, index) => ({
@@ -132,6 +132,23 @@ export default function Analytics() {
       sum + Number(item.dependents || 0),
     0
   );
+
+  const approvedApps = applications.filter((a) => a.approved);
+  const rejectedApps = applications.filter((a) => !a.approved);
+
+  const avgIncomeAppr = approvedApps.length > 0 ? approvedApps.reduce((s, a) => s + Number(a.income || 0), 0) / approvedApps.length : 0;
+  const avgIncomeRej = rejectedApps.length > 0 ? rejectedApps.reduce((s, a) => s + Number(a.income || 0), 0) / rejectedApps.length : 0;
+
+  const avgLoanAppr = approvedApps.length > 0 ? approvedApps.reduce((s, a) => s + Number(a.loanAmount || 0), 0) / approvedApps.length : 0;
+  const avgLoanRej = rejectedApps.length > 0 ? rejectedApps.reduce((s, a) => s + Number(a.loanAmount || 0), 0) / rejectedApps.length : 0;
+
+  const avgCibilAppr = approvedApps.length > 0 ? approvedApps.reduce((s, a) => s + Number(a.cibil || 0), 0) / approvedApps.length : 0;
+  const avgCibilRej = rejectedApps.length > 0 ? rejectedApps.reduce((s, a) => s + Number(a.cibil || 0), 0) / rejectedApps.length : 0;
+
+  const maxIncome = Math.max(avgIncomeAppr, avgIncomeRej, 1);
+  const maxLoan = Math.max(avgLoanAppr, avgLoanRej, 1);
+  const maxCibil = 900;
+
 
 
   // ====================================================
@@ -748,6 +765,95 @@ export default function Analytics() {
               <i className="loan-dot"></i>
               Loan Amount
             </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      {/* ==================================================
+          FEATURE VS APPROVAL ANALYSIS
+      ================================================== */}
+
+      <div className="analytics-grid feature-analysis">
+
+        <div className="analytics-panel full-width">
+
+          <div className="panel-heading">
+            <div>
+              <h2>Features vs Approval Status</h2>
+              <p>Compare average applicant metrics between approved and rejected loans</p>
+            </div>
+            <Activity size={20} />
+          </div>
+
+          <div className="feature-compare-grid">
+            
+            {/* Income */}
+            <div className="feature-compare-item">
+              <span>Average Income</span>
+              <div className="compare-bars">
+                <div className="compare-row">
+                  <span className="compare-label">Approved</span>
+                  <div className="compare-track">
+                    <div className="compare-fill approved-fill" style={{ width: `${Math.min(100, (avgIncomeAppr / maxIncome) * 100)}%` }}></div>
+                  </div>
+                  <span className="compare-value">{formatMoney(avgIncomeAppr)}</span>
+                </div>
+                <div className="compare-row">
+                  <span className="compare-label">Rejected</span>
+                  <div className="compare-track">
+                    <div className="compare-fill rejected-fill" style={{ width: `${Math.min(100, (avgIncomeRej / maxIncome) * 100)}%` }}></div>
+                  </div>
+                  <span className="compare-value">{formatMoney(avgIncomeRej)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Loan Amount */}
+            <div className="feature-compare-item">
+              <span>Average Loan Amount</span>
+              <div className="compare-bars">
+                <div className="compare-row">
+                  <span className="compare-label">Approved</span>
+                  <div className="compare-track">
+                    <div className="compare-fill approved-fill" style={{ width: `${Math.min(100, (avgLoanAppr / maxLoan) * 100)}%` }}></div>
+                  </div>
+                  <span className="compare-value">{formatMoney(avgLoanAppr)}</span>
+                </div>
+                <div className="compare-row">
+                  <span className="compare-label">Rejected</span>
+                  <div className="compare-track">
+                    <div className="compare-fill rejected-fill" style={{ width: `${Math.min(100, (avgLoanRej / maxLoan) * 100)}%` }}></div>
+                  </div>
+                  <span className="compare-value">{formatMoney(avgLoanRej)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* CIBIL Score */}
+            <div className="feature-compare-item">
+              <span>Average CIBIL Score</span>
+              <div className="compare-bars">
+                <div className="compare-row">
+                  <span className="compare-label">Approved</span>
+                  <div className="compare-track">
+                    <div className="compare-fill approved-fill" style={{ width: `${Math.min(100, (avgCibilAppr / maxCibil) * 100)}%` }}></div>
+                  </div>
+                  <span className="compare-value">{Math.round(avgCibilAppr)}</span>
+                </div>
+                <div className="compare-row">
+                  <span className="compare-label">Rejected</span>
+                  <div className="compare-track">
+                    <div className="compare-fill rejected-fill" style={{ width: `${Math.min(100, (avgCibilRej / maxCibil) * 100)}%` }}></div>
+                  </div>
+                  <span className="compare-value">{Math.round(avgCibilRej)}</span>
+                </div>
+              </div>
+            </div>
 
           </div>
 

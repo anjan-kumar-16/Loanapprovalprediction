@@ -12,6 +12,7 @@ import {
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import "./Applications.css";
 
@@ -24,9 +25,15 @@ function Applications() {
   const [selectedApp, setSelectedApp] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/applications")
+    fetch(`${import.meta.env.VITE_API_URL}/api/applications`)
       .then(res => res.json())
-      .then(data => setApplicationsData(data))
+      .then(data => {
+        if (Array.isArray(data)) {
+          setApplicationsData(data);
+        } else {
+          console.error("Expected array but got:", data);
+        }
+      })
       .catch(err => console.error("Failed to fetch applications", err));
   }, []);
 
@@ -54,7 +61,7 @@ function Applications() {
 
   const handleStatusUpdate = async (appId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/applications/${appId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/applications/${appId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -65,13 +72,14 @@ function Applications() {
         setApplicationsData(prev => prev.map(app => 
           app.application_id === appId ? { ...app, status: newStatus } : app
         ));
+        toast.success(`Application marked as ${newStatus}`);
         setSelectedApp(null);
       } else {
-        alert("Failed to update status");
+        toast.error("Failed to update status");
       }
     } catch (err) {
       console.error(err);
-      alert("Error updating status");
+      toast.error("Error updating status");
     }
   };
 
@@ -559,7 +567,7 @@ const ApplicationModal = ({ app, onClose, authRole, onUpdateStatus }) => {
               <span className="badge">AI Recommendation</span>
             </div>
             <p><strong>Decision:</strong> {app.ai_recommendation || 'Pending'}</p>
-            <p><strong>Confidence Score:</strong> {app.probability_score}%</p>
+            <p><strong>Confidence Score:</strong> {app.ai_recommendation === 'Loan Rejected' ? 100 - app.probability_score : app.probability_score}%</p>
           </div>
 
           <p><strong>Current Status:</strong> <StatusBadge status={app.status} /></p>

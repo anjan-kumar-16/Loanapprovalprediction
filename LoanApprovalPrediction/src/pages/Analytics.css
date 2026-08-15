@@ -622,6 +622,85 @@
 }
 
 /* =========================================
+   FEATURE VS APPROVAL ANALYSIS
+========================================= */
+
+.feature-analysis {
+  margin-bottom: 24px;
+}
+
+.feature-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 24px;
+}
+
+.feature-compare-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-compare-item > span {
+  color: #17284a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.compare-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.compare-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.compare-label {
+  width: 55px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #657187;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.compare-track {
+  flex: 1;
+  height: 8px;
+  background: #f0f2f7;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.compare-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.compare-fill.approved-fill {
+  background: #20a36a;
+}
+
+.compare-fill.rejected-fill {
+  background: #e85c68;
+}
+
+.compare-value {
+  width: 65px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #17284a;
+  text-align: right;
+}
+
+/* =========================================
    RESPONSIVE
 ========================================= */
 

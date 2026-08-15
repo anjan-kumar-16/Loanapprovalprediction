@@ -159,7 +159,7 @@ function ModelPerformance() {
   const [matrixItems, setMatrixItems] = React.useState(initialMatrixItems);
 
   React.useEffect(() => {
-    fetch("http://localhost:8000/api/metrics")
+    fetch(`${import.meta.env.VITE_API_URL}/api/metrics`)
       .then((res) => res.json())
       .then((data) => {
         setMetrics((prev) => [

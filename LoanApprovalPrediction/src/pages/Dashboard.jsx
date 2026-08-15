@@ -25,7 +25,7 @@ function Dashboard() {
   const [applicationsData, setApplicationsData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/applications")
+    fetch(`${import.meta.env.VITE_API_URL}/api/applications`)
       .then(res => res.json())
       .then(data => setApplicationsData(data))
       .catch(err => console.error(err));
