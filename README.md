@@ -154,6 +154,3 @@ LOAN_APPROVAL/
 
 ---
 
-<div align="center">
-  <i>Built with ❤️ for modern financial underwriting.</i>
-</div>
