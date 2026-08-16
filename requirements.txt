@@ -8,3 +8,6 @@ seaborn
 joblib
 fastapi
 uvicorn
+sqlalchemy
+pymysql
+python-dotenv

@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 import datetime
 import random
+import uuid
 from schemas import LoanApplication
 import models
 from database import get_db
@@ -29,7 +30,7 @@ def get_prediction(application: LoanApplication, db: Session = Depends(get_db)):
             raise HTTPException(status_code=500, detail=result["error"])
             
         db_app = models.Application(
-            application_id=f"LA-{random.randint(1000, 9999)}",
+            application_id=f"LA-{str(uuid.uuid4())[:8].upper()}",
             name=application.name if application.name else "Applicant",
             no_of_dependents=int(application.no_of_dependents),
             education=application.education,
@@ -72,7 +73,9 @@ def simulate_approval(application: LoanApplication):
             
         sim_input = base_input.copy()
         step_amount = max(100000, sim_input["loan_amount"] * 0.05)
-        while sim_input["loan_amount"] > 0:
+        max_iterations = 20
+        iterations = 0
+        while sim_input["loan_amount"] > 0 and iterations < max_iterations:
             sim_input["loan_amount"] -= step_amount
             sim_result = predict_loan(sim_input)
             if sim_result.get("loan_status") == "Loan Approved":
@@ -82,11 +85,13 @@ def simulate_approval(application: LoanApplication):
                     "required_value": sim_input["loan_amount"],
                     "message": f"If you reduce your loan amount to ₹{sim_input['loan_amount']:,.0f}, you have a high chance of approval."
                 }
+            iterations += 1
                 
         sim_input = base_input.copy()
         step_asset = max(100000, sim_input["income_annum"] * 0.1)
         max_asset = base_input["bank_asset_value"] + (base_input["income_annum"] * 5)
-        while sim_input["bank_asset_value"] < max_asset:
+        iterations = 0
+        while sim_input["bank_asset_value"] < max_asset and iterations < max_iterations:
             sim_input["bank_asset_value"] += step_asset
             sim_result = predict_loan(sim_input)
             if sim_result.get("loan_status") == "Loan Approved":
@@ -96,6 +101,7 @@ def simulate_approval(application: LoanApplication):
                     "required_value": sim_input["bank_asset_value"],
                     "message": f"If you increase your bank assets/savings to ₹{sim_input['bank_asset_value']:,.0f}, you have a high chance of approval."
                 }
+            iterations += 1
                 
         return {"message": "We could not find a simple single-factor adjustment to approve this loan. Try improving your CIBIL score."}
     except Exception as e:

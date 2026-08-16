@@ -1,31 +1,20 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import pymysql
-
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load .env from parent directory
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:mysql@localhost/loan_db")
-
-def create_db_if_not_exists():
-    try:
-        conn = pymysql.connect(host='localhost', user='root', password='mysql')
-        cursor = conn.cursor()
-        cursor.execute("CREATE DATABASE IF NOT EXISTS loan_db")
-        conn.commit()
-        cursor.close()
-        conn.close()
-    except Exception as e:
-        print(f"Error creating database: {e}")
-
-create_db_if_not_exists()
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./sql_app.db")
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL
+    SQLALCHEMY_DATABASE_URL,
+    connect_args={"check_same_thread": False} if "sqlite" in SQLALCHEMY_DATABASE_URL else {}
 )
+
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
