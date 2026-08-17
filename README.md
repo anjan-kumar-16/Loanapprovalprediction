@@ -30,7 +30,7 @@
 
 Traditional loan approval systems often rely on rigid rule-based logic or opaque machine learning models that offer no explanation for their decisions. 
 
-This platform leverages **Machine Learning** to accurately predict loan approvals and utilizes **SHAP (SHapley Additive exPlanations)** to provide transparent, human-readable rationale for every decision. Designed for modern underwriters, it includes a comprehensive analytics dashboard to monitor portfolio health and an interactive simulator to test edge cases and provide actionable advice to applicants.
+This platform leverages **Machine Learning** to accurately predict loan approvals and utilizes **SHAP (SHapley Additive exPlanations)** to provide transparent, human-readable rationale for every decis[...] 
 
 ---
 
@@ -38,7 +38,7 @@ This platform leverages **Machine Learning** to accurately predict loan approval
 
 - **🧠 AI Loan Prediction:** Predicts loan approval probabilities based on an applicant's holistic financial profile (Income, CIBIL Score, Loan Amount, Dependents, Education).
 - **🔍 Explainable AI (XAI):** Breaks down the positive and negative contributing factors for every application using SHAP values.
-- **🎛️ What-If Simulator:** An interactive sandbox allowing loan officers to tweak an applicant's parameters (like CIBIL score or requested loan amount) in real-time to see how it affects their approval chances.
+- **🎛️ What-If Simulator:** An interactive sandbox allowing loan officers to tweak an applicant's parameters (like CIBIL score or requested loan amount) in real-time to see how it affects their a[...]
 - **📊 Portfolio Analytics:** A comprehensive dashboard visualizing approval rates, feature comparisons (e.g., Average Income vs Approval Status), and overall portfolio risk distribution.
 - **📈 Performance Monitoring:** Tracks model drift, data leakage, and real-time prediction accuracy to ensure the AI remains unbiased and effective.
 
@@ -49,7 +49,7 @@ This platform leverages **Machine Learning** to accurately predict loan approval
 ```mermaid
 graph TD;
     Client[React Frontend] -->|REST API calls| API(FastAPI Backend)
-    API -->|Read/Write| DB[(SQLite Database)]
+    API -->|Read/Write| DB[(PostgreSQL Database)]
     API -->|Input Data| ML[ML Pipeline]
     ML -->|Preprocessing| Pre[StandardScaler]
     Pre -->|Model Inference| RF[Random Forest Model]
@@ -68,7 +68,7 @@ graph TD;
 | **Frontend** | React 19, Vite, Recharts, Lucide React, React Router Dom |
 | **Backend** | FastAPI, Uvicorn, SQLAlchemy, Pydantic |
 | **Machine Learning** | Scikit-Learn, XGBoost, SHAP, Pandas, NumPy |
-| **Database** | SQLite |
+| **Database** | PostgreSQL |
 
 ---
 
@@ -79,6 +79,7 @@ Follow these instructions to set up the project locally for development and test
 ### 1. Prerequisites
 - **Python 3.10+**
 - **Node.js 18+** & npm
+- **PostgreSQL** (local or hosted)
 
 ### 2. Backend Setup
 
@@ -88,6 +89,12 @@ Navigate to the project root and install the required Python dependencies:
 pip install -r requirements.txt
 ```
 
+Create a `.env` file in the `backend` directory (or your environment) with the database connection URL and any other secrets the backend needs. Example:
+
+```env
+DATABASE_URL=postgresql://username:password@localhost:5432/loan_db
+```
+
 Start the FastAPI development server:
 
 ```bash
@@ -95,6 +102,8 @@ cd backend
 uvicorn main:app --reload --port 8000
 ```
 > **Note:** The backend API will be running at `http://localhost:8000`. You can view the interactive API documentation at `http://localhost:8000/docs`.
+
+---
 
 ### 3. Frontend Setup
 
@@ -157,5 +166,6 @@ Loanapprovalprediction/
 1. **Prediction Pipeline**: When an application is submitted, the backend routes the financial data to `machine_learning/src/predict.py`.
 2. **Preprocessing**: Data passes through the preprocessing pipeline embedded within the model artifacts, where categorical variables are encoded and numerical features are scaled.
 3. **Inference**: The preprocessed data is fed into the trained ML model (`loan_approval_model.pkl`) to generate an approval probability score (0-100%).
-4. **SHAP Explanation**: The `TreeExplainer` calculates SHAP values, assigning a direct quantitative impact to each feature (e.g., *"-15% due to low CIBIL score"*). This rationale is instantly returned to the frontend.
-5. **Actionable Suggestions**: If an application is rejected, the system dynamically analyzes the negative SHAP values to provide constructive, targeted advice to the applicant on how to improve their chances.
+4. **SHAP Explanation**: The `TreeExplainer` calculates SHAP values, assigning a direct quantitative impact to each feature (e.g., *"-15% due to low CIBIL score"*). This rationale is instantly returne[...] 
+5. **Actionable Suggestions**: If an application is rejected, the system dynamically analyzes the negative SHAP values to provide constructive, targeted advice to the applicant on how to improve[...] 
+
