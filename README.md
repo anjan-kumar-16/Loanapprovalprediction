@@ -117,29 +117,29 @@ npm run dev
 ## 📂 Project Structure
 
 ```text
-LOAN_APPROVAL/
+Loanapprovalprediction/
 ├── backend/                   # ⚙️ FastAPI Backend
 │   ├── routers/               # API endpoint handlers
-│   ├── database.py            # SQLite connection setup
+│   ├── database.py            # Database connection setup
 │   ├── models.py              # SQLAlchemy database models
 │   ├── schemas.py             # Pydantic validation schemas
 │   └── main.py                # FastAPI app entry point
 │
-├── LoanApprovalPrediction/    # 🎨 React Frontend
+├── frontend/                  # 🎨 React Frontend
 │   ├── src/
 │   │   ├── components/        # Reusable UI components
 │   │   ├── pages/             # Main views (Dashboard, Analytics, WhatIf)
 │   │   └── App.jsx            # Main React application
 │   └── package.json           # Frontend dependencies
 │
-├── src/                       # 🧠 Machine Learning Pipeline
-│   ├── predict.py             # Inference & SHAP logic
-│   ├── preprocessing.py       # Data cleaning and scaling
-│   ├── feature_engineering.py # Feature extraction logic
-│   └── evaluate.py            # Model performance tracking
+├── machine_learning/          # 🧠 Machine Learning Pipeline
+│   ├── data/                  # raw, interim, and processed datasets
+│   ├── src/                   # ML source code (predict, train, etc.)
+│   └── synthesize_dataset.py  # Mock data generation script
 │
-├── synthesize_dataset.py      # Mock data generation script
+├── docs/                      # 📄 Project documentation and artifacts
 ├── requirements.txt           # Python dependencies
+├── render.yaml                # Render deployment configuration
 └── README.md                  # Project documentation
 ```
 
