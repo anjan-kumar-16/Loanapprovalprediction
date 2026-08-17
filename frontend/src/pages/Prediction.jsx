@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -10,11 +10,16 @@ import {
   GraduationCap,
   BriefcaseBusiness,
   Users,
+  Download,
 } from "lucide-react";
 import "./Prediction.css";
 
 const Prediction = () => {
   const { state } = useLocation();
+
+  if (!state) {
+    return <Navigate to="/application" replace />;
+  }
 
   const data = state?.application || {};
   const prediction = state?.predictionResult || {};
@@ -271,7 +276,7 @@ const Prediction = () => {
             <div>
               <span>Employment</span>
               <strong>
-                {data.self_employed === "Yes" ? "Self Employed" : "Salaried"}
+                {data.employment_type === "Employed" ? "Employed" : "Unemployed"}
               </strong>
             </div>
           </div>
@@ -311,9 +316,10 @@ const Prediction = () => {
           New Application
         </Link>
 
-        <Link to="/dashboard" className="primary-button">
-          View Dashboard
-        </Link>
+        <button onClick={() => window.print()} className="primary-button" style={{ marginLeft: "10px", display: "flex", alignItems: "center", gap: "8px" }}>
+          <Download size={16} />
+          Download Report
+        </button>
 
       </div>
 

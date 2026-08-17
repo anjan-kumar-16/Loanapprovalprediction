@@ -27,7 +27,7 @@ function NewApplication() {
 
     no_of_dependents: "",
     education: "",
-    self_employed: "",
+    employment_type: "",
 
     income_annum: "",
     loan_amount: "",
@@ -76,7 +76,7 @@ function NewApplication() {
       loan_id: loanId,
       no_of_dependents: formData.no_of_dependents,
       education: formData.education,
-      self_employed: formData.self_employed,
+      employment_type: formData.employment_type,
       income_annum: parseFormattedNumber(formData.income_annum),
       loan_amount: parseFormattedNumber(formData.loan_amount),
       loan_term: Number(formData.loan_term),
@@ -298,13 +298,13 @@ function NewApplication() {
             <div className="form-group">
 
               <label>
-                Self Employed
+                Type of Employment
               </label>
 
               <select
-                name="self_employed"
+                name="employment_type"
                 value={
-                  formData.self_employed
+                  formData.employment_type
                 }
                 onChange={handleChange}
                 required
@@ -314,12 +314,12 @@ function NewApplication() {
                   Select employment
                 </option>
 
-                <option value="Yes">
-                  Yes
+                <option value="Employed">
+                  Employed
                 </option>
 
-                <option value="No">
-                  No
+                <option value="Unemployed">
+                  Unemployed
                 </option>
 
               </select>

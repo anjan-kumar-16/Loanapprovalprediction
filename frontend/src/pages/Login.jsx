@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Brain, Lock, User, AlertCircle } from 'lucide-react';
+import { Brain, Lock, User, AlertCircle, ArrowLeft } from 'lucide-react';
 import './Login.css';
 
 const Login = ({ setAuthRole }) => {
@@ -58,7 +58,7 @@ const Login = ({ setAuthRole }) => {
             <User size={18} className="input-icon" />
             <input 
               type="text" 
-              placeholder="Username (manager / applicant)" 
+              placeholder="Username" 
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required 
@@ -79,8 +79,27 @@ const Login = ({ setAuthRole }) => {
         
         <div className="login-hints">
           <small>Manager: <code>manager</code> / <code>password</code></small>
-          <small>Applicant: <code>applicant</code> / <code>password</code></small>
         </div>
+        
+        <button 
+          onClick={() => navigate('/')} 
+          style={{ 
+            marginTop: '20px', 
+            background: 'transparent', 
+            border: 'none', 
+            color: '#6844e8', 
+            cursor: 'pointer', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px', 
+            fontSize: '14px',
+            width: '100%',
+            justifyContent: 'center'
+          }}
+        >
+          <ArrowLeft size={16} />
+          Go back Home
+        </button>
       </div>
     </div>
   );

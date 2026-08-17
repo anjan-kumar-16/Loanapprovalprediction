@@ -42,13 +42,13 @@ function AppLayout({ authRole, setAuthRole }) {
 
       <main className={`main-content ${hideSidebar ? "main-content-home" : ""}`}>
         <Routes>
-          <Route path="/" element={<ProtectedRoute authRole={authRole}><Home /></ProtectedRoute>} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setAuthRole={setAuthRole} />} />
           
-          <Route path="/application" element={<ProtectedRoute authRole={authRole}><NewApplication /></ProtectedRoute>} />
-          <Route path="/prediction" element={<ProtectedRoute authRole={authRole}><Prediction /></ProtectedRoute>} />
+          <Route path="/application" element={<NewApplication />} />
+          <Route path="/prediction" element={<Prediction />} />
           
-          <Route path="/dashboard" element={<ProtectedRoute authRole={authRole}><Dashboard /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Dashboard /></ProtectedRoute>} />
           <Route path="/applications" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Applications /></ProtectedRoute>} />
           <Route path="/what-if" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><WhatIf /></ProtectedRoute>} />
           <Route path="/analytics" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Analytics /></ProtectedRoute>} />

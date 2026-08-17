@@ -10,7 +10,13 @@ def load_model_and_explainer():
     """
     try:
         import os
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        import sys
+        
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if current_dir not in sys.path:
+            sys.path.append(current_dir)
+            
+        base_dir = os.path.dirname(current_dir)
         model_path = os.path.join(base_dir, "models", "loan_approval_model.pkl")
         pipeline = joblib.load(model_path)
         model = pipeline.named_steps['model']

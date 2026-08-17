@@ -554,7 +554,7 @@ const ApplicationModal = ({ app, onClose, authRole, onUpdateStatus }) => {
           <p><strong>Applicant Name:</strong> {app.name}</p>
           <p><strong>Dependents:</strong> {app.no_of_dependents}</p>
           <p><strong>Education:</strong> {app.education}</p>
-          <p><strong>Self Employed:</strong> {app.self_employed}</p>
+          <p><strong>Type of Employment:</strong> {app.self_employed}</p>
           <p><strong>Income:</strong> ₹{app.income_annum}</p>
           <p><strong>Loan Amount:</strong> ₹{app.loan_amount}</p>
           <p><strong>Loan Term:</strong> {app.loan_term} years</p>

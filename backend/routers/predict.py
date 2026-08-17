@@ -16,7 +16,7 @@ def get_prediction(application: LoanApplication, db: Session = Depends(get_db)):
         ml_input = {
             "no_of_dependents": int(application.no_of_dependents),
             "education": application.education.strip(),
-            "employment_type": 1 if application.self_employed == "Yes" else 0,
+            "employment_type": 1 if application.employment_type == "Employed" else 0,
             "income_annum": application.income_annum,
             "loan_amount": application.loan_amount,
             "loan_term": application.loan_term * 12,
@@ -29,25 +29,26 @@ def get_prediction(application: LoanApplication, db: Session = Depends(get_db)):
         if "error" in result:
             raise HTTPException(status_code=500, detail=result["error"])
             
-        db_app = models.Application(
-            application_id=f"LA-{str(uuid.uuid4())[:8].upper()}",
-            name=application.name if application.name else "Applicant",
-            no_of_dependents=int(application.no_of_dependents),
-            education=application.education,
-            self_employed=application.self_employed,
-            income_annum=application.income_annum,
-            loan_amount=application.loan_amount,
-            loan_term=application.loan_term,
-            cibil_score=application.cibil_score,
-            bank_asset_value=application.bank_asset_value,
-            status="Pending",
-            ai_recommendation=result["loan_status"],
-            probability_score=int(result["approval_probability"] * 100),
-            date=datetime.datetime.now().strftime("%d %b %Y")
-        )
-        db.add(db_app)
-        db.commit()
-        db.refresh(db_app)
+        if not application.is_whatif:
+            db_app = models.Application(
+                application_id=f"LA-{str(uuid.uuid4())[:8].upper()}",
+                name=application.name if application.name else "Applicant",
+                no_of_dependents=int(application.no_of_dependents),
+                education=application.education,
+                self_employed=application.employment_type,
+                income_annum=application.income_annum,
+                loan_amount=application.loan_amount,
+                loan_term=application.loan_term,
+                cibil_score=application.cibil_score,
+                bank_asset_value=application.bank_asset_value,
+                status="Pending",
+                ai_recommendation=result["loan_status"],
+                probability_score=int(result["approval_probability"] * 100),
+                date=datetime.datetime.now().strftime("%d %b %Y")
+            )
+            db.add(db_app)
+            db.commit()
+            db.refresh(db_app)
             
         return result
     except Exception as e:
@@ -59,7 +60,7 @@ def simulate_approval(application: LoanApplication):
         base_input = {
             "no_of_dependents": int(application.no_of_dependents),
             "education": application.education.strip(),
-            "employment_type": 1 if application.self_employed == "Yes" else 0,
+            "employment_type": 1 if application.employment_type == "Employed" else 0,
             "income_annum": application.income_annum,
             "loan_amount": application.loan_amount,
             "loan_term": application.loan_term * 12,

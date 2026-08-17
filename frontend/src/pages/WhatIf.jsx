@@ -31,7 +31,7 @@ function WhatIf() {
     loan_amount: 10000000,
     loan_term: 10,
     no_of_dependents: 2,
-    self_employed: "No",
+    employment_type: "Employed",
   });
 
 
@@ -83,8 +83,8 @@ function WhatIf() {
             latest.no_of_dependents
           ),
 
-        self_employed:
-          latest.self_employed,
+        employment_type:
+          latest.employment_type || (latest.self_employed === "Yes" ? "Employed" : "Unemployed"),
       });
     }
 
@@ -112,12 +112,13 @@ function WhatIf() {
           body: JSON.stringify({
             no_of_dependents: String(values.no_of_dependents),
             education: application ? application.education : "Graduate",
-            self_employed: values.self_employed,
+            employment_type: values.employment_type,
             income_annum: values.income_annum,
             loan_amount: values.loan_amount,
             loan_term: values.loan_term,
             cibil_score: values.cibil_score,
             bank_asset_value: application ? application.bank_asset_value || 0 : 0,
+            is_whatif: true,
           }),
         });
         const data = await response.json();
@@ -194,8 +195,8 @@ function WhatIf() {
           application.no_of_dependents
         ),
 
-      self_employed:
-        application.self_employed,
+      employment_type:
+        application.employment_type || (application.self_employed === "Yes" ? "Employed" : "Unemployed"),
     });
   };
 
@@ -518,22 +519,22 @@ function WhatIf() {
 
             <select
               value={
-                values.self_employed
+                values.employment_type
               }
               onChange={(event) =>
                 updateValue(
-                  "self_employed",
+                  "employment_type",
                   event.target.value
                 )
               }
             >
 
-              <option value="No">
-                Not Self Employed
+              <option value="Unemployed">
+                Unemployed
               </option>
 
-              <option value="Yes">
-                Self Employed
+              <option value="Employed">
+                Employed
               </option>
 
             </select>

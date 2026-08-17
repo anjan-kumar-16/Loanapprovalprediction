@@ -6,6 +6,7 @@ import {
   FileText,
   Home,
   LayoutDashboard,
+  LogIn,
   LogOut,
   Menu,
   Sparkles,
@@ -52,12 +53,6 @@ function Sidebar({ authRole, onLogout }) {
     },
 
     {
-      name: "Prediction",
-      path: "/prediction",
-      icon: <BrainCircuit size={16} />,
-    },
-
-    {
       name: "What-If Analysis",
       path: "/what-if",
       icon: <Sparkles size={16} />,
@@ -81,12 +76,17 @@ function Sidebar({ authRole, onLogout }) {
       icon: <LogOut size={16} />,
       onClick: handleLogout,
     },
+    {
+      name: "Login",
+      path: "/login",
+      icon: <LogIn size={16} />,
+    },
 
   ];
 
-  const filteredMenuItems = authRole === 'applicant' 
-    ? menuItems.filter(item => ['/', '/dashboard', '/application', '/prediction', '#logout'].includes(item.path))
-    : menuItems;
+  const filteredMenuItems = authRole === 'manager' 
+    ? menuItems.filter(item => ['/', '/dashboard', '/applications', '/what-if', '/analytics', '/model-performance', '#logout'].includes(item.path))
+    : menuItems.filter(item => ['/', '/application', '/login'].includes(item.path));
 
   function handleNavigation() {
     setMobileOpen(false);

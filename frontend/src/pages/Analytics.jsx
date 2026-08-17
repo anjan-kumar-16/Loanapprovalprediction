@@ -69,7 +69,7 @@ export default function Analytics() {
           loanAmount: Number(item.loan_amount || 0),
           cibil: Number(item.cibil_score || 0),
           education: item.education || "Graduate",
-          selfEmployed: item.self_employed === "Yes" || item.self_employed === true,
+          selfEmployed: item.self_employed === "Yes" || item.self_employed === true || item.self_employed === "Employed",
           dependents: Number(item.no_of_dependents || 0),
           status: item.status,
           aiRecommendation: item.ai_recommendation
@@ -775,65 +775,113 @@ export default function Analytics() {
           <div className="feature-compare-grid">
             
             {/* Income */}
-            <div className="feature-compare-item">
-              <span>Average Income</span>
-              <div className="compare-bars">
-                <div className="compare-row">
-                  <span className="compare-label">Approved</span>
-                  <div className="compare-track">
-                    <div className="compare-fill approved-fill" style={{ width: `${Math.min(100, (avgIncomeAppr / maxIncome) * 100)}%` }}></div>
-                  </div>
-                  <span className="compare-value">{formatMoney(avgIncomeAppr)}</span>
-                </div>
-                <div className="compare-row">
-                  <span className="compare-label">Rejected</span>
-                  <div className="compare-track">
-                    <div className="compare-fill rejected-fill" style={{ width: `${Math.min(100, (avgIncomeRej / maxIncome) * 100)}%` }}></div>
-                  </div>
-                  <span className="compare-value">{formatMoney(avgIncomeRej)}</span>
-                </div>
+            <div className="feature-compare-item" style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ marginBottom: '16px', fontWeight: '600' }}>Average Income</span>
+              <div style={{ height: 200, width: '100%' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={[
+                    { name: 'Approved', value: avgIncomeAppr },
+                    { name: 'Rejected', value: avgIncomeRej }
+                  ]} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#8b9bb4', fontWeight: 600 }} />
+                    <YAxis 
+                      axisLine={false} 
+                      tickLine={false} 
+                      tick={{ fontSize: 11, fill: '#8b9bb4' }}
+                      tickFormatter={(val) => `₹${(val / 100000).toFixed(1)}L`}
+                    />
+                    <Tooltip 
+                      cursor={{ fill: 'rgba(0,0,0,0.02)' }}
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', fontWeight: 600, fontSize: 14 }}
+                      formatter={(val) => [formatMoney(val), 'Income']}
+                    />
+                    <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={40}>
+                      {
+                        [
+                          { name: 'Approved', value: avgIncomeAppr },
+                          { name: 'Rejected', value: avgIncomeRej }
+                        ].map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.name === 'Approved' ? '#35ad72' : '#e84c4c'} />
+                        ))
+                      }
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
             {/* Loan Amount */}
-            <div className="feature-compare-item">
-              <span>Average Loan Amount</span>
-              <div className="compare-bars">
-                <div className="compare-row">
-                  <span className="compare-label">Approved</span>
-                  <div className="compare-track">
-                    <div className="compare-fill approved-fill" style={{ width: `${Math.min(100, (avgLoanAppr / maxLoan) * 100)}%` }}></div>
-                  </div>
-                  <span className="compare-value">{formatMoney(avgLoanAppr)}</span>
-                </div>
-                <div className="compare-row">
-                  <span className="compare-label">Rejected</span>
-                  <div className="compare-track">
-                    <div className="compare-fill rejected-fill" style={{ width: `${Math.min(100, (avgLoanRej / maxLoan) * 100)}%` }}></div>
-                  </div>
-                  <span className="compare-value">{formatMoney(avgLoanRej)}</span>
-                </div>
+            <div className="feature-compare-item" style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ marginBottom: '16px', fontWeight: '600' }}>Average Loan Amount</span>
+              <div style={{ height: 200, width: '100%' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={[
+                    { name: 'Approved', value: avgLoanAppr },
+                    { name: 'Rejected', value: avgLoanRej }
+                  ]} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#8b9bb4', fontWeight: 600 }} />
+                    <YAxis 
+                      axisLine={false} 
+                      tickLine={false} 
+                      tick={{ fontSize: 11, fill: '#8b9bb4' }}
+                      tickFormatter={(val) => `₹${(val / 100000).toFixed(1)}L`}
+                    />
+                    <Tooltip 
+                      cursor={{ fill: 'rgba(0,0,0,0.02)' }}
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', fontWeight: 600, fontSize: 14 }}
+                      formatter={(val) => [formatMoney(val), 'Loan Amount']}
+                    />
+                    <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={40}>
+                      {
+                        [
+                          { name: 'Approved', value: avgLoanAppr },
+                          { name: 'Rejected', value: avgLoanRej }
+                        ].map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.name === 'Approved' ? '#35ad72' : '#e84c4c'} />
+                        ))
+                      }
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
             {/* CIBIL Score */}
-            <div className="feature-compare-item">
-              <span>Average CIBIL Score</span>
-              <div className="compare-bars">
-                <div className="compare-row">
-                  <span className="compare-label">Approved</span>
-                  <div className="compare-track">
-                    <div className="compare-fill approved-fill" style={{ width: `${Math.min(100, (avgCibilAppr / maxCibil) * 100)}%` }}></div>
-                  </div>
-                  <span className="compare-value">{Math.round(avgCibilAppr)}</span>
-                </div>
-                <div className="compare-row">
-                  <span className="compare-label">Rejected</span>
-                  <div className="compare-track">
-                    <div className="compare-fill rejected-fill" style={{ width: `${Math.min(100, (avgCibilRej / maxCibil) * 100)}%` }}></div>
-                  </div>
-                  <span className="compare-value">{Math.round(avgCibilRej)}</span>
-                </div>
+            <div className="feature-compare-item" style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ marginBottom: '16px', fontWeight: '600' }}>Average CIBIL Score</span>
+              <div style={{ height: 200, width: '100%' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={[
+                    { name: 'Approved', value: avgCibilAppr },
+                    { name: 'Rejected', value: avgCibilRej }
+                  ]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#8b9bb4', fontWeight: 600 }} />
+                    <YAxis 
+                      axisLine={false} 
+                      tickLine={false} 
+                      tick={{ fontSize: 11, fill: '#8b9bb4' }}
+                      domain={[300, 900]}
+                    />
+                    <Tooltip 
+                      cursor={{ fill: 'rgba(0,0,0,0.02)' }}
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', fontWeight: 600, fontSize: 14 }}
+                      formatter={(val) => [Math.round(val), 'CIBIL Score']}
+                    />
+                    <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={40}>
+                      {
+                        [
+                          { name: 'Approved', value: avgCibilAppr },
+                          { name: 'Rejected', value: avgCibilRej }
+                        ].map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.name === 'Approved' ? '#35ad72' : '#e84c4c'} />
+                        ))
+                      }
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
@@ -910,7 +958,7 @@ export default function Analytics() {
               </strong>
 
               <span>
-                Self Employed
+                Type of Employment
               </span>
 
             </div>
@@ -1030,11 +1078,11 @@ export default function Analytics() {
                   </div>
 
                   <div>
-                    <span>Employment</span>
+                    <span>Type of Employment</span>
                     <strong>
                       {selectedApplicant.selfEmployed
-                        ? "Self Employed"
-                        : "Salaried"}
+                        ? "Employed"
+                        : "Unemployed"}
                     </strong>
                   </div>
 
@@ -1644,7 +1692,7 @@ export default function Analytics() {
                 <div className="analysis-row">
 
                   <span>
-                    Self Employed
+                    Type of Employment
                   </span>
 
                   <strong>

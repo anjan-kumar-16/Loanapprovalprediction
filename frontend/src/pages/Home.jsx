@@ -24,21 +24,15 @@ const Home = () => {
           </div>
           <h2>Ready to get started?</h2>
           <p>
-            You are logged in as <strong>{role === 'manager' ? 'Manager' : 'Applicant'}</strong>. 
             {role === 'manager' 
-              ? " You have full access to view all applications, perform what-if analysis, and review AI model metrics."
-              : " You can submit new applications and view your personal AI prediction."}
+              ? "You are logged in as Manager. You have full access to view all applications, perform what-if analysis, and review AI model metrics."
+              : "Welcome! You can submit new applications and view your personal AI prediction instantly. Managers can log in to access the dashboard."}
           </p>
           <div className="welcome-actions">
             {role === 'manager' ? (
-              <>
-                <button className="btn-primary" onClick={() => navigate("/dashboard")}>
-                  Go to Dashboard <ArrowRight size={18} />
-                </button>
-                <button className="btn-primary" onClick={() => navigate("/application")} style={{ marginLeft: "10px", background: "#f1edff", color: "#6844e8" }}>
-                  New Application <ArrowRight size={18} />
-                </button>
-              </>
+              <button className="btn-primary" onClick={() => navigate("/dashboard")}>
+                Go to Dashboard <ArrowRight size={18} />
+              </button>
             ) : (
               <button className="btn-primary" onClick={() => navigate("/application")}>
                 Start New Application <ArrowRight size={18} />

@@ -110,7 +110,7 @@ const features = [
     type: "Categorical",
   },
   {
-    name: "Self Employed",
+    name: "Type of Employment",
     icon: BriefcaseBusiness,
     description:
       "Indicates whether the applicant is self-employed.",

@@ -3,6 +3,7 @@ import os
 
 # Add the parent directory and src to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'machine_learning')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'machine_learning', 'src')))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
