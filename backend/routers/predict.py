@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 import datetime
-import random
 import uuid
 from schemas import LoanApplication
 import models

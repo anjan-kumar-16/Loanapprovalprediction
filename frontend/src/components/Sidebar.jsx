@@ -1,90 +1,48 @@
-import {
-  BarChart3,
-  Activity,
-  FilePlus2,
-  FileText,
-  Home,
-  LayoutDashboard,
-  LogIn,
-  LogOut,
-  Menu,
-  Sparkles,
-  X,
-} from "lucide-react";
-
 import { NavLink, useNavigate } from "react-router-dom";
-
 import { useState } from "react";
-
 import "./Sidebar.css";
-
 
 function Sidebar({ authRole, onLogout }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const navigate = useNavigate();
 
-
   const menuItems = [
-
     {
       name: "Home",
       path: "/",
-      icon: <Home size={16} />,
     },
-
     {
       name: "Dashboard",
       path: "/dashboard",
-      icon: <LayoutDashboard size={16} />,
     },
-
     {
       name: "New Application",
       path: "/application",
-      icon: <FilePlus2 size={16} />,
     },
-
     {
       name: "Applications",
       path: "/applications",
-      icon: <FileText size={16} />,
     },
-
     {
-      name: "What-If Analysis",
+      name: "What If Analysis",
       path: "/what-if",
-      icon: <Sparkles size={16} />,
     },
-
     {
       name: "Analytics",
       path: "/analytics",
-      icon: <BarChart3 size={16} />,
     },
-
     {
       name: "Model Performance",
       path: "/model-performance",
-      icon: <Activity size={16} />,
-    },
-
-    {
-      name: "Logout",
-      path: "#logout",
-      icon: <LogOut size={16} />,
-      onClick: handleLogout,
     },
     {
       name: "Login",
       path: "/login",
-      icon: <LogIn size={16} />,
     },
-
   ];
 
   const filteredMenuItems = authRole === 'manager' 
-    ? menuItems.filter(item => ['/', '/dashboard', '/applications', '/what-if', '/analytics', '/model-performance', '#logout'].includes(item.path))
+    ? menuItems.filter(item => ['/', '/dashboard', '/applications', '/what-if', '/analytics', '/model-performance'].includes(item.path))
     : menuItems.filter(item => ['/', '/application', '/login'].includes(item.path));
 
   function handleNavigation() {
@@ -99,198 +57,76 @@ function Sidebar({ authRole, onLogout }) {
     }
   }
 
-
   return (
-
     <>
-
-      {/* MOBILE BUTTON */}
-
       <button
         className="mobile-menu-button"
-        onClick={() =>
-          setMobileOpen(true)
-        }
+        onClick={() => setMobileOpen(true)}
       >
-
-        <Menu size={20} />
-
+        Menu
       </button>
 
-
-      {/* OVERLAY */}
-
       {mobileOpen && (
-
         <div
           className="sidebar-overlay"
-          onClick={() =>
-            setMobileOpen(false)
-          }
+          onClick={() => setMobileOpen(false)}
         />
-
       )}
 
-
-      {/* SIDEBAR */}
-
-      <aside
-        className={`sidebar ${
-          mobileOpen
-            ? "sidebar-open"
-            : ""
-        }`}
-      >
-
-
-        {/* CLOSE */}
-
+      <aside className={`sidebar ${mobileOpen ? "sidebar-open" : ""}`}>
         <button
           className="sidebar-close"
-          onClick={() =>
-            setMobileOpen(false)
-          }
+          onClick={() => setMobileOpen(false)}
         >
-
-          <X size={18} />
-
+          Close
         </button>
 
-
-        {/* LOGO */}
-
         <div className="sidebar-logo">
-
-          <div className="logo-mark">
-
-            <Activity size={20} />
-
-          </div>
-
-          <div>
-
-            <h2>
-              Loan<span>AI</span>
-            </h2>
-
-            <p>
-              SMART PREDICTION
-            </p>
-
-          </div>
-
+          <h2>
+            Loan Approval<br/>Prediction
+          </h2>
         </div>
 
-
-        {/* USER */}
-
-        <div className="sidebar-user">
-
-          <div className="user-avatar">
-            AI
+        {authRole === 'manager' && (
+          <div className="sidebar-user">
+            <strong>Admin User</strong>
+            <span>Operations</span>
           </div>
-
-          <div>
-
-            <strong>
-              Loan Analyst
-            </strong>
-
-            <span>
-              Prediction Center
-            </span>
-
-          </div>
-
-        </div>
-
-
-        {/* MENU TITLE */}
+        )}
 
         <div className="sidebar-title">
           MAIN MENU
         </div>
 
-
-        {/* NAVIGATION */}
-
         <ul className="sidebar-nav">
           {filteredMenuItems.map((item) => (
             <li key={item.path} className="nav-item">
               <NavLink
-                to={item.path !== "#logout" ? item.path : "#"}
+                to={item.path}
                 end={item.path === "/"}
-                onClick={(e) => {
-                  if (item.onClick) {
-                    e.preventDefault();
-                    item.onClick();
-                  } else {
-                    handleNavigation();
-                  }
-                }}
+                onClick={handleNavigation}
                 className={({ isActive }) =>
-                  `sidebar-link ${isActive && item.path !== "#logout" ? "active" : ""}`
+                  `sidebar-link ${isActive ? "active" : ""}`
                 }
               >
-                <span className="sidebar-icon">
-                  {item.icon}
-                </span>
                 <span className="sidebar-text">
                   {item.name}
                 </span>
-                {item.path !== "#logout" && (
-                  <span className="sidebar-arrow">
-                    →
-                  </span>
-                )}
               </NavLink>
             </li>
           ))}
         </ul>
 
-
-        {/* BOTTOM */}
-
-        <div className="sidebar-bottom">
-
-
-          {/* AI STATUS */}
-
-          <div className="ai-status">
-
-            <div className="ai-status-icon">
-
-              <Activity size={14} />
-
-            </div>
-
-            <div>
-
-              <strong>
-                AI Engine
-              </strong>
-
-              <span>
-
-                <i />
-
-                Online
-
-              </span>
-
-            </div>
-
+        {authRole === 'manager' && (
+          <div className="sidebar-bottom">
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
-
-
-        </div>
-
+        )}
       </aside>
-
     </>
-
   );
 }
-
 
 export default Sidebar;
