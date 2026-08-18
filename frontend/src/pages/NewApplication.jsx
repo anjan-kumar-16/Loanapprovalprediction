@@ -72,6 +72,13 @@ function NewApplication() {
 
     const loanId = `LOAN-${Date.now()}`;
 
+    const parsedLoanAmount = parseFormattedNumber(formData.loan_amount);
+    if (parsedLoanAmount < 50000) {
+      setError("The minimum loan amount is ₹50,000.");
+      setLoading(false);
+      return;
+    }
+
     const application = {
       loan_id: loanId,
       no_of_dependents: formData.no_of_dependents,

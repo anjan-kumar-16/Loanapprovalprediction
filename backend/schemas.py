@@ -6,7 +6,7 @@ class LoanApplication(BaseModel):
     education: str
     employment_type: str
     income_annum: float = Field(..., ge=0)
-    loan_amount: float = Field(..., gt=0)
+    loan_amount: float = Field(..., ge=50000)
     loan_term: float = Field(..., gt=0)
     cibil_score: float = Field(..., ge=300, le=900)
     bank_asset_value: Optional[float] = Field(0, ge=0)
