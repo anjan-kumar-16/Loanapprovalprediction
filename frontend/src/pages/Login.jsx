@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Brain, Lock, User, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Lock, User, AlertCircle, ArrowLeft } from 'lucide-react';
 import './Login.css';
 
 const Login = ({ setAuthRole }) => {
@@ -41,7 +41,7 @@ const Login = ({ setAuthRole }) => {
     <div className="login-container">
       <div className="login-box">
         <div className="login-header">
-          <Brain size={40} className="login-icon" />
+
           <h2>AI Loan Approval System</h2>
           <p>Login to access your dashboard</p>
         </div>
@@ -77,9 +77,7 @@ const Login = ({ setAuthRole }) => {
           <button type="submit" className="login-btn">Secure Login</button>
         </form>
         
-        <div className="login-hints">
-          <small>Manager: <code>manager</code> / <code>password</code></small>
-        </div>
+
         
         <button 
           onClick={() => navigate('/')} 

@@ -680,7 +680,7 @@ function Dashboard() {
 
             <QuickAction
               to="/prediction"
-              icon={<BrainIcon />}
+              icon={<Activity size={16} />}
               title="Prediction"
               text="View loan prediction"
             />
@@ -889,17 +889,6 @@ function QuickAction({
   );
 }
 
-
-/* =========================================
-   BRAIN ICON
-   ========================================= */
-
-function BrainIcon() {
-
-  return (
-    <ShieldCheck size={16} />
-  );
-}
 
 
 function ApplicantDashboard({ applications }) {

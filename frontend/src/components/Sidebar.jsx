@@ -1,7 +1,7 @@
 import {
   Activity,
   BarChart3,
-  BrainCircuit,
+  Activity,
   FilePlus2,
   FileText,
   Home,
@@ -164,7 +164,7 @@ function Sidebar({ authRole, onLogout }) {
 
           <div className="logo-mark">
 
-            <BrainCircuit size={20} />
+            <Activity size={20} />
 
           </div>
 
@@ -261,7 +261,7 @@ function Sidebar({ authRole, onLogout }) {
 
             <div className="ai-status-icon">
 
-              <BrainCircuit size={14} />
+              <Activity size={14} />
 
             </div>
 

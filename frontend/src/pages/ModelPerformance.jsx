@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Brain,
+  Activity,
   Database,
   Activity,
   ShieldCheck,
@@ -192,7 +192,7 @@ function ModelPerformance() {
       <div className="model-header">
         <div>
           <div className="eyebrow">
-            <Brain size={14} />
+            <Activity size={14} />
             AI MODEL PERFORMANCE
           </div>
 
@@ -213,7 +213,7 @@ function ModelPerformance() {
       <section className="current-model-card">
         <div className="current-model-left">
           <div className="model-icon">
-            <Brain size={30} />
+            <Activity size={30} />
           </div>
 
           <div>
@@ -456,7 +456,7 @@ function ModelPerformance() {
       <section className="model-info-section">
         <div className="info-title">
           <div className="panel-icon">
-            <Brain size={19} />
+            <Activity size={19} />
           </div>
 
           <div>

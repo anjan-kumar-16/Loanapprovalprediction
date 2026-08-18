@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, ArrowRight, ShieldCheck, Activity, BarChart3 } from "lucide-react";
+import { ArrowRight, ShieldCheck, Activity, BarChart3 } from "lucide-react";
 import "./Home.css";
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
       <div className="home-content-body">
         <div className="welcome-card">
           <div className="welcome-icon">
-            <Brain size={32} />
+            <Activity size={32} />
           </div>
           <h2>Ready to get started?</h2>
           <p>

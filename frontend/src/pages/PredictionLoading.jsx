@@ -1,4 +1,4 @@
-import { BrainCircuit, ShieldCheck, BarChart3 } from "lucide-react";
+import { Activity, ShieldCheck, BarChart3 } from "lucide-react";
 import "./PredictionLoading.css";
 
 function PredictionLoading() {
@@ -8,7 +8,7 @@ function PredictionLoading() {
 
         <div className="ai-loader">
           <div className="loader-ring"></div>
-          <BrainCircuit size={38} />
+          <Activity size={38} />
         </div>
 
         <span className="loading-label">
@@ -47,7 +47,7 @@ function PredictionLoading() {
           </div>
 
           <div className="analysis-item">
-            <BrainCircuit size={17} />
+            <Activity size={17} />
             <span>Running AI prediction model</span>
             <i></i>
           </div>
