@@ -51,10 +51,10 @@ function AppLayout({ authRole, setAuthRole }) {
           <Route path="/prediction" element={<Prediction />} />
           <Route path="/cibil-check" element={<CibilCheck />} />
           <Route path="/emi-calculator" element={<EmiCalculator />} />
+          <Route path="/what-if" element={<WhatIf />} />
           
           <Route path="/dashboard" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Dashboard /></ProtectedRoute>} />
           <Route path="/applications" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Applications /></ProtectedRoute>} />
-          <Route path="/what-if" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><WhatIf /></ProtectedRoute>} />
           <Route path="/analytics" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Analytics /></ProtectedRoute>} />
           <Route path="/model-performance" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><ModelPerformance /></ProtectedRoute>} />
           

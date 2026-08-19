@@ -50,8 +50,8 @@ function Sidebar({ authRole, onLogout }) {
   ];
 
   const filteredMenuItems = authRole === 'manager' 
-    ? menuItems.filter(item => ['/', '/dashboard', '/applications', '/what-if', '/analytics', '/model-performance'].includes(item.path))
-    : menuItems.filter(item => ['/', '/application', '/cibil-check', '/emi-calculator', '/login'].includes(item.path));
+    ? menuItems.filter(item => ['/', '/dashboard', '/applications', '/analytics', '/model-performance'].includes(item.path))
+    : menuItems.filter(item => ['/', '/application', '/what-if', '/cibil-check', '/emi-calculator', '/login'].includes(item.path));
 
   function handleNavigation() {
     setMobileOpen(false);
