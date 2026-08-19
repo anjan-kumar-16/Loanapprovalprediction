@@ -8,7 +8,7 @@ class LoanApplication(BaseModel):
     income_annum: float = Field(..., ge=0)
     loan_amount: float = Field(..., ge=50000)
     loan_term: float = Field(..., gt=0)
-    cibil_score: float = Field(..., ge=300, le=900)
+    cibil_score: float = Field(..., ge=0, le=900)
     bank_asset_value: Optional[float] = Field(0, ge=0)
     name: Optional[str] = None
     is_whatif: Optional[bool] = False

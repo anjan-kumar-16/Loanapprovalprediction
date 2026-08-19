@@ -19,6 +19,8 @@ import Prediction from "./pages/Prediction";
 import WhatIf from "./pages/WhatIf";
 import Analytics from "./pages/Analytics";
 import ModelPerformance from "./pages/ModelPerformance";
+import CibilCheck from "./pages/CibilCheck";
+import EmiCalculator from "./pages/EmiCalculator";
 
 import "./App.css";
 
@@ -47,6 +49,8 @@ function AppLayout({ authRole, setAuthRole }) {
           
           <Route path="/application" element={<NewApplication />} />
           <Route path="/prediction" element={<Prediction />} />
+          <Route path="/cibil-check" element={<CibilCheck />} />
+          <Route path="/emi-calculator" element={<EmiCalculator />} />
           
           <Route path="/dashboard" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Dashboard /></ProtectedRoute>} />
           <Route path="/applications" element={<ProtectedRoute authRole={authRole} allowedRoles={['manager']}><Applications /></ProtectedRoute>} />

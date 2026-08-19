@@ -112,7 +112,10 @@ def predict_loan(application_data):
             "loan_amount": "Requesting a smaller loan amount may improve your chances of approval.",
             "loan_term": "Try adjusting your loan term (a longer term reduces monthly burden).",
             "income_annum": "Increasing your co-applicant's income or showing additional income sources may help.",
-            "bank_asset_value": "Increasing your bank balance and savings can improve your approval odds."
+            "bank_asset_value": "Increasing your bank balance and savings can improve your approval odds.",
+            "no_of_dependents": "A higher number of dependents increases financial liability. Consider a co-applicant.",
+            "total_assets": "Increasing your total asset value (savings, property) strengthens your profile.",
+            "employment_type": "Stable employment improves loan eligibility. Consider showing proof of regular income.",
         }
         
         # Format explanation

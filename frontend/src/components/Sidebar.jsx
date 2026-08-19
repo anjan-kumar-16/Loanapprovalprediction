@@ -36,6 +36,14 @@ function Sidebar({ authRole, onLogout }) {
       path: "/model-performance",
     },
     {
+      name: "CIBIL Check",
+      path: "/cibil-check",
+    },
+    {
+      name: "EMI Calculator",
+      path: "/emi-calculator",
+    },
+    {
       name: "Login",
       path: "/login",
     },
@@ -43,7 +51,7 @@ function Sidebar({ authRole, onLogout }) {
 
   const filteredMenuItems = authRole === 'manager' 
     ? menuItems.filter(item => ['/', '/dashboard', '/applications', '/what-if', '/analytics', '/model-performance'].includes(item.path))
-    : menuItems.filter(item => ['/', '/application', '/login'].includes(item.path));
+    : menuItems.filter(item => ['/', '/application', '/cibil-check', '/emi-calculator', '/login'].includes(item.path));
 
   function handleNavigation() {
     setMobileOpen(false);

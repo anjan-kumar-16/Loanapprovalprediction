@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useLocation, Navigate } from "react-router-dom";
 import {
   ArrowLeft,
+  ArrowRight,
   CheckCircle2,
   ShieldCheck,
   TrendingUp,
@@ -11,6 +12,10 @@ import {
   BriefcaseBusiness,
   Users,
   Download,
+  Calculator,
+  Gauge,
+  Info,
+  Tractor,
 } from "lucide-react";
 import "./Prediction.css";
 
@@ -26,11 +31,13 @@ const Prediction = () => {
 
   const approved = prediction.loan_status === "Loan Approved";
 
-  const confidence = approved 
-    ? Math.round((prediction.approval_probability || 0) * 100) 
+  const confidence = approved
+    ? Math.round((prediction.approval_probability || 0) * 100)
     : Math.round((prediction.rejection_probability || 0) * 100);
 
-  const cibil = data.cibil_score || 0;
+  const cibil = Number(data.cibil_score) || 0;
+  const isNewToCredit = cibil === 0;
+  const isFarmer = data.employment_type === "Farmer";
 
   const loanAmount = Number(data.loan_amount || 0);
   const income = Number(data.income_annum || 0);
@@ -45,6 +52,57 @@ const Prediction = () => {
     }
 
     return `₹${amount.toLocaleString("en-IN")}`;
+  };
+
+  // --- CIBIL Score Check ---
+  const getCibilBand = (score) => {
+    if (score === 0) return { label: "New to Credit", color: "#6366f1", bg: "#eef2ff", percent: 5 };
+    if (score >= 750) return { label: "Excellent", color: "#10b981", bg: "#ecfdf5", percent: (score / 900) * 100 };
+    if (score >= 700) return { label: "Good", color: "#22c55e", bg: "#f0fdf4", percent: (score / 900) * 100 };
+    if (score >= 650) return { label: "Fair", color: "#f59e0b", bg: "#fffbeb", percent: (score / 900) * 100 };
+    if (score >= 300) return { label: "Poor", color: "#ef4444", bg: "#fef2f2", percent: (score / 900) * 100 };
+    return { label: "Invalid", color: "#94a3b8", bg: "#f8fafc", percent: 0 };
+  };
+
+  const cibilBand = getCibilBand(cibil);
+
+  const cibilTips = {
+    "Excellent": [
+      "Your credit score is excellent! You qualify for the best interest rates.",
+      "Maintain timely payments to keep this score.",
+      "You may be eligible for premium credit products.",
+    ],
+    "Good": [
+      "Your score is good. Small improvements can push it to Excellent.",
+      "Keep your credit utilization below 30%.",
+      "Avoid opening too many new credit accounts.",
+    ],
+    "Fair": [
+      "Your score needs improvement. Focus on reducing outstanding debts.",
+      "Set up auto-payments to avoid missed deadlines.",
+      "Check your credit report for errors and dispute them.",
+    ],
+    "Poor": [
+      "Your score needs significant improvement before applying for large loans.",
+      "Pay off existing debts starting with the highest-interest ones.",
+      "Consider a secured credit card to rebuild your credit history.",
+      "Avoid multiple loan applications in a short period.",
+    ],
+    "New to Credit": [
+      "You have no credit history yet. This is normal for first-time applicants.",
+      "Start building credit with a secured credit card or a small personal loan.",
+      "Become an authorized user on a family member's credit card.",
+      "Pay all utility bills on time — some bureaus track these.",
+      "Your loan evaluation will rely more heavily on income and assets.",
+    ],
+  };
+
+
+  // --- Employment display ---
+  const getEmploymentLabel = (type) => {
+    if (type === "Farmer") return "Farmer / Agricultural";
+    if (type === "Employed") return "Employed";
+    return "Unemployed";
   };
 
   return (
@@ -124,13 +182,9 @@ const Prediction = () => {
 
           <div>
             <span>CIBIL Score</span>
-            <strong>{cibil}</strong>
+            <strong>{isNewToCredit ? "N/A" : cibil}</strong>
             <small>
-              {cibil >= 750
-                ? "Excellent"
-                : cibil >= 700
-                ? "Good"
-                : "Needs Improvement"}
+              {cibilBand.label}
             </small>
           </div>
 
@@ -244,6 +298,51 @@ const Prediction = () => {
         </div>
       )}
 
+
+      {/* ========================================
+          EXTERNAL TOOLS
+          ======================================== */}
+
+      <div className="applicant-details-card" style={{ marginBottom: "2rem" }}>
+        <div className="details-header">
+          <div>
+            <h2>Financial Tools</h2>
+            <p>Explore more about your credit health and plan payments</p>
+          </div>
+        </div>
+
+        <div className="details-grid" style={{ gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+          
+          <Link to="/cibil-check" className="detail-item" style={{ textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <div className="metric-icon purple" style={{ width: 42, height: 42, borderRadius: 12 }}>
+              <Gauge size={22} />
+            </div>
+            <div style={{ flex: 1, paddingLeft: '4px' }}>
+              <span style={{ fontSize: '10px', color: '#8792a5', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 600 }}>Credit Health</span>
+              <strong style={{ display: 'block', marginTop: '3px', fontSize: '15px', color: '#25344f', fontWeight: 800 }}>Check CIBIL Score</strong>
+            </div>
+            <div style={{ color: '#754ce8' }}>
+               <ArrowRight size={20} />
+            </div>
+          </Link>
+
+          <Link to="/emi-calculator" className="detail-item" style={{ textDecoration: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <div className="metric-icon blue" style={{ width: 42, height: 42, borderRadius: 12 }}>
+              <Calculator size={22} />
+            </div>
+            <div style={{ flex: 1, paddingLeft: '4px' }}>
+              <span style={{ fontSize: '10px', color: '#8792a5', textTransform: 'uppercase', letterSpacing: '0.3px', fontWeight: 600 }}>Plan Payments</span>
+              <strong style={{ display: 'block', marginTop: '3px', fontSize: '15px', color: '#25344f', fontWeight: 800 }}>EMI Calculator</strong>
+            </div>
+            <div style={{ color: '#4d8df5' }}>
+               <ArrowRight size={20} />
+            </div>
+          </Link>
+
+        </div>
+      </div>
+
+
       {/* APPLICANT DETAILS */}
 
       <div className="applicant-details-card">
@@ -270,13 +369,13 @@ const Prediction = () => {
 
           <div className="detail-item">
             <div className="detail-icon">
-              <BriefcaseBusiness size={19} />
+              {isFarmer ? <Tractor size={19} /> : <BriefcaseBusiness size={19} />}
             </div>
 
             <div>
               <span>Employment</span>
               <strong>
-                {data.employment_type === "Employed" ? "Employed" : "Unemployed"}
+                {getEmploymentLabel(data.employment_type)}
               </strong>
             </div>
           </div>

@@ -1,0 +1,340 @@
+/* =========================================
+   EMI CALCULATOR PAGE
+========================================= */
+
+.emi-page {
+  min-height: 100vh;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(117, 76, 232, 0.1), transparent 28%),
+    radial-gradient(circle at 10% 90%, rgba(79, 140, 255, 0.06), transparent 25%),
+    #f7f8fd;
+}
+
+/* Header */
+.emi-page-header {
+  margin-bottom: 28px;
+}
+
+.emi-page-header span {
+  color: #754ce8;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.emi-page-header h1 {
+  margin: 6px 0 0;
+  color: #17284a;
+  font-size: 34px;
+  font-weight: 850;
+  letter-spacing: -0.8px;
+}
+
+.emi-page-header p {
+  margin: 8px 0 0;
+  color: #8a95a8;
+  font-size: 13px;
+}
+
+/* Main Grid */
+.emi-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Sliders Card */
+.emi-sliders-card {
+  padding: 28px;
+  border: 1px solid #e5e9f1;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 35px rgba(30, 45, 75, 0.06);
+}
+
+.emi-slider-block {
+  padding: 20px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.emi-slider-block:last-child {
+  margin-bottom: 0;
+}
+
+.emi-slider-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.emi-slider-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.emi-slider-icon.blue {
+  color: #4d8df5;
+  background: #edf4ff;
+}
+
+.emi-slider-icon.purple {
+  color: #754ce8;
+  background: #f0eaff;
+}
+
+.emi-slider-icon.green {
+  color: #24a96f;
+  background: #eaf9f1;
+}
+
+.emi-slider-head span {
+  display: block;
+  font-size: 10px;
+  color: #8792a5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.emi-slider-head strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 18px;
+  font-weight: 850;
+  color: #1e293b;
+}
+
+.emi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #754ce8, #4d8df5);
+  outline: none;
+  cursor: pointer;
+}
+
+.emi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #754ce8;
+  box-shadow: 0 2px 8px rgba(117, 76, 232, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s;
+}
+
+.emi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 14px rgba(117, 76, 232, 0.45);
+}
+
+.emi-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #754ce8;
+  box-shadow: 0 2px 8px rgba(117, 76, 232, 0.35);
+  cursor: pointer;
+}
+
+.emi-slider-bounds {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.emi-slider-bounds small {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Results Panel */
+.emi-results-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* EMI Highlight */
+.emi-highlight-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #754ce8, #6366f1);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(117, 76, 232, 0.3);
+}
+
+.emi-highlight-card span {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.emi-highlight-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+.emi-highlight-card small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* Stats Grid */
+.emi-stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.emi-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #e5e9f1;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(30, 45, 75, 0.04);
+}
+
+.emi-stat-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  flex-shrink: 0;
+}
+
+.emi-stat span {
+  display: block;
+  font-size: 10px;
+  color: #8792a5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.emi-stat strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 17px;
+  font-weight: 850;
+  color: #25344f;
+}
+
+/* Visual Breakdown */
+.emi-visual-breakdown {
+  padding: 22px;
+  border: 1px solid #e5e9f1;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(30, 45, 75, 0.04);
+}
+
+.emi-breakdown-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.emi-bar-container {
+  display: flex;
+  height: 36px;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.emi-bar-principal {
+  background: linear-gradient(90deg, #754ce8, #9f7cf7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.emi-bar-interest {
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.emi-bar-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.emi-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.emi-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .emi-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .emi-page {
+    padding: 20px;
+  }
+
+  .emi-page-header h1 {
+    font-size: 26px;
+  }
+
+  .emi-highlight-card strong {
+    font-size: 24px;
+  }
+}

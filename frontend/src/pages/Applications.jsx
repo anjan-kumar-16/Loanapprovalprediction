@@ -44,7 +44,7 @@ function Applications() {
       maximumFractionDigits: 0,
     }).format(Number(value || 0));
   };
-  
+
   const applications = applicationsData.map((app, index) => ({
     id: app.application_id || `LA-${1000 + index}`,
     name: app.name || "Applicant",
@@ -69,7 +69,7 @@ function Applications() {
         body: JSON.stringify({ status: newStatus }),
       });
       if (response.ok) {
-        setApplicationsData(prev => prev.map(app => 
+        setApplicationsData(prev => prev.map(app =>
           app.application_id === appId ? { ...app, status: newStatus } : app
         ));
         toast.success(`Application marked as ${newStatus}`);
@@ -206,9 +206,8 @@ function Applications() {
                 <button
                   key={item}
                   type="button"
-                  className={`filter-button ${
-                    filter === item ? "active" : ""
-                  } ${item.toLowerCase()}`}
+                  className={`filter-button ${filter === item ? "active" : ""
+                    } ${item.toLowerCase()}`}
                   onClick={() => setFilter(item)}
                 >
                   {item}
@@ -330,8 +329,8 @@ function Applications() {
                           application.score >= 70
                             ? "score-number good"
                             : application.score >= 50
-                            ? "score-number medium"
-                            : "score-number low"
+                              ? "score-number medium"
+                              : "score-number low"
                         }
                       >
                         {application.score}
@@ -344,8 +343,8 @@ function Applications() {
                             application.score >= 70
                               ? "progress-good"
                               : application.score >= 50
-                              ? "progress-medium"
-                              : "progress-low"
+                                ? "progress-medium"
+                                : "progress-low"
                           }
                           style={{
                             width: `${application.score}%`,
@@ -451,9 +450,9 @@ function Applications() {
 
       </div>
 
-      <ApplicationModal 
-        app={selectedApp} 
-        onClose={() => setSelectedApp(null)} 
+      <ApplicationModal
+        app={selectedApp}
+        onClose={() => setSelectedApp(null)}
         authRole={authRole}
         onUpdateStatus={handleStatusUpdate}
       />
@@ -561,7 +560,7 @@ const ApplicationModal = ({ app, onClose, authRole, onUpdateStatus }) => {
           <p><strong>CIBIL Score:</strong> {app.cibil_score}</p>
           <p><strong>Bank Assets:</strong> ₹{app.bank_asset_value}</p>
           <hr />
-          
+
           <div className="ai-recommendation-box">
             <div className="ai-rec-header">
               <span className="badge">AI Recommendation</span>
@@ -571,7 +570,7 @@ const ApplicationModal = ({ app, onClose, authRole, onUpdateStatus }) => {
           </div>
 
           <p><strong>Current Status:</strong> <StatusBadge status={app.status} /></p>
-          
+
           {app.status === "Pending" && authRole === "manager" && (
             <div className="modal-actions">
               <button className="btn-approve" onClick={() => onUpdateStatus(app.application_id, "Approved")}>

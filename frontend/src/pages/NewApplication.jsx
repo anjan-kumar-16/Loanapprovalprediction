@@ -11,6 +11,7 @@ import {
   Sparkles,
   UserRound,
   Loader2,
+  Tractor,
 } from "lucide-react";
 
 import "./NewApplication.css";
@@ -22,6 +23,7 @@ function NewApplication() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isNewToCredit, setIsNewToCredit] = useState(false);
 
   const [formData, setFormData] = useState({
 
@@ -36,8 +38,12 @@ function NewApplication() {
     cibil_score: "",
 
     bank_asset_value: "",
+    land_asset_value: "",
+    other_income: "",
 
   });
+
+  const isFarmer = formData.employment_type === "Farmer";
 
 
   const formatIndianNumber = (numStr) => {
@@ -54,8 +60,8 @@ function NewApplication() {
 
   const handleChange = (event) => {
     let { name, value } = event.target;
-    
-    if (["income_annum", "loan_amount", "bank_asset_value"].includes(name)) {
+
+    if (["income_annum", "loan_amount", "bank_asset_value", "land_asset_value", "other_income"].includes(name)) {
       value = formatIndianNumber(value);
     }
 
@@ -84,11 +90,11 @@ function NewApplication() {
       no_of_dependents: formData.no_of_dependents,
       education: formData.education,
       employment_type: formData.employment_type,
-      income_annum: parseFormattedNumber(formData.income_annum),
+      income_annum: parseFormattedNumber(formData.income_annum) + (isFarmer ? parseFormattedNumber(formData.other_income) : 0),
       loan_amount: parseFormattedNumber(formData.loan_amount),
       loan_term: Number(formData.loan_term),
       cibil_score: Number(formData.cibil_score),
-      bank_asset_value: parseFormattedNumber(formData.bank_asset_value),
+      bank_asset_value: parseFormattedNumber(formData.bank_asset_value) + (isFarmer ? parseFormattedNumber(formData.land_asset_value) : 0),
     };
 
     try {
@@ -329,6 +335,10 @@ function NewApplication() {
                   Unemployed
                 </option>
 
+                <option value="Farmer">
+                  Farmer / Agricultural
+                </option>
+
               </select>
 
             </div>
@@ -375,7 +385,7 @@ function NewApplication() {
             <div className="form-group">
 
               <label>
-                Annual Income
+                {isFarmer ? "Annual Agricultural Income" : "Annual Income"}
               </label>
 
               <div className="input-with-icon">
@@ -390,17 +400,50 @@ function NewApplication() {
                     formData.income_annum
                   }
                   onChange={handleChange}
-                  placeholder="e.g. 96,00,000"
+                  placeholder={isFarmer ? "e.g. 3,00,000" : "e.g. 96,00,000"}
                   required
                 />
 
               </div>
 
               <small>
-                Enter annual income in ₹
+                {isFarmer
+                  ? "Include crop sales, dairy, livestock, and seasonal earnings"
+                  : "Enter annual income in ₹"}
               </small>
 
             </div>
+
+            {isFarmer && (
+              <div className="form-group">
+
+                <label>
+                  Govt. Subsidies / Other Income
+                </label>
+
+                <div className="input-with-icon">
+
+                  <IndianRupee size={14} />
+
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    name="other_income"
+                    value={
+                      formData.other_income
+                    }
+                    onChange={handleChange}
+                    placeholder="e.g. 1,00,000"
+                  />
+
+                </div>
+
+                <small>
+                  PM-KISAN, crop insurance payouts, MGNREGA, etc.
+                </small>
+
+              </div>
+            )}
 
 
             {/* LOAN AMOUNT */}
@@ -510,6 +553,26 @@ function NewApplication() {
                 CIBIL Score
               </label>
 
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                <input
+                  type="checkbox"
+                  id="newToCredit"
+                  checked={isNewToCredit}
+                  onChange={(e) => {
+                    setIsNewToCredit(e.target.checked);
+                    if (e.target.checked) {
+                      setFormData(prev => ({ ...prev, cibil_score: 0 }));
+                    } else {
+                      setFormData(prev => ({ ...prev, cibil_score: "" }));
+                    }
+                  }}
+                  style={{ width: 'auto', marginBottom: 0 }}
+                />
+                <label htmlFor="newToCredit" style={{ marginBottom: 0, fontWeight: 'normal' }}>
+                  New to Credit (No CIBIL Score)
+                </label>
+              </div>
+
               <input
                 type="number"
                 name="cibil_score"
@@ -518,9 +581,10 @@ function NewApplication() {
                 }
                 onChange={handleChange}
                 placeholder="300 - 900"
-                min="300"
+                min="0"
                 max="900"
                 required
+                disabled={isNewToCredit}
               />
 
               <small>
@@ -630,7 +694,26 @@ function NewApplication() {
               placeholder="e.g. 8000000"
             />
 
+            {isFarmer && (
+              <AssetInput
+                name="land_asset_value"
+                label="Land / Agricultural Assets"
+                value={
+                  formData.land_asset_value
+                }
+                onChange={handleChange}
+                icon={<Tractor size={14} />}
+                placeholder="e.g. 5000000"
+              />
+            )}
+
           </div>
+
+          {isFarmer && (
+            <div style={{ marginTop: '8px', padding: '10px 14px', borderRadius: '8px', background: '#f0fdf4', border: '1px solid #bbf7d0', fontSize: '12px', color: '#166534', lineHeight: 1.6 }}>
+              <strong>🌾 Farmer Note:</strong> Your land and agricultural assets will be combined with bank assets for a fair evaluation. Farmers with high land value but lower cash income are evaluated using total asset strength.
+            </div>
+          )}
 
         </section>
 
