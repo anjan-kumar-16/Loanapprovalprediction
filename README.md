@@ -10,6 +10,8 @@
   [![Vite](https://img.shields.io/badge/Vite-B73BFE.svg?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
   [![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E.svg?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  
+  [![Live Demo](https://img.shields.io/badge/Live%20Demo-Open-informational?style=flat&logo=internet-explorer&logoColor=white&color=2b85d8)](https://loanapprovalprediction-1-sh9t.onrender.com/)
 
 </div>
 
@@ -18,6 +20,7 @@
 ## 📖 Table of Contents
 - [About the Project](#-about-the-project)
 - [Key Features](#-key-features)
+- [Live Demo](#-live-demo)
 - [System Architecture](#-system-architecture)
 - [Technology Stack](#-technology-stack)
 - [Getting Started](#-getting-started)
@@ -38,9 +41,22 @@ This platform leverages **Machine Learning** to accurately predict loan approval
 
 - **🧠 AI Loan Prediction:** Predicts loan approval probabilities based on an applicant's holistic financial profile (Income, CIBIL Score, Loan Amount, Dependents, Education).
 - **🔍 Explainable AI (XAI):** Breaks down the positive and negative contributing factors for every application using SHAP values.
-- **🎛️ What-If Simulator:** An interactive sandbox allowing loan officers to tweak an applicant's parameters (like CIBIL score or requested loan amount) in real-time to see how it affects their a[...]
+- **🎛️ What-If Simulator:** An interactive sandbox allowing loan officers to tweak an applicant's parameters (like CIBIL score or requested loan amount) in real-time to see how it affects the a[...] 
 - **📊 Portfolio Analytics:** A comprehensive dashboard visualizing approval rates, feature comparisons (e.g., Average Income vs Approval Status), and overall portfolio risk distribution.
 - **📈 Performance Monitoring:** Tracks model drift, data leakage, and real-time prediction accuracy to ensure the AI remains unbiased and effective.
+
+---
+
+## 🚀 Live Demo
+
+A professionally hosted live demo is available for evaluation and demonstration. It showcases the application's core capabilities, including the loan prediction interface, SHAP-based explanations, and portfolio analytics dashboards.
+
+Visit the live demo: https://loanapprovalprediction-1-sh9t.onrender.com/
+
+Professional notes:
+- This instance is intended for demonstration and testing only; it may contain synthetic or anonymized sample data.
+- For production deployment, ensure secure configuration, HTTPS, access controls, and compliance with applicable data protection regulations.
+- If you need a dedicated demo environment, integration support, or have questions about deployment, please contact the repository owner.
 
 ---
 
@@ -166,6 +182,5 @@ Loanapprovalprediction/
 1. **Prediction Pipeline**: When an application is submitted, the backend routes the financial data to `machine_learning/src/predict.py`.
 2. **Preprocessing**: Data passes through the preprocessing pipeline embedded within the model artifacts, where categorical variables are encoded and numerical features are scaled.
 3. **Inference**: The preprocessed data is fed into the trained ML model (`loan_approval_model.pkl`) to generate an approval probability score (0-100%).
-4. **SHAP Explanation**: The `TreeExplainer` calculates SHAP values, assigning a direct quantitative impact to each feature (e.g., *"-15% due to low CIBIL score"*). This rationale is instantly returne[...] 
+4. **SHAP Explanation**: The `TreeExplainer` calculates SHAP values, assigning a direct quantitative impact to each feature (e.g., *"-15% due to low CIBIL score"*). This rationale is instantly re[...]
 5. **Actionable Suggestions**: If an application is rejected, the system dynamically analyzes the negative SHAP values to provide constructive, targeted advice to the applicant on how to improve[...] 
-
