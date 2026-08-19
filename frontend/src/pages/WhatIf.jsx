@@ -32,6 +32,7 @@ function WhatIf() {
     loan_term: 10,
     no_of_dependents: 2,
     employment_type: "Employed",
+    bank_asset_value: 0,
   });
 
 
@@ -83,6 +84,11 @@ function WhatIf() {
             latest.no_of_dependents
           ),
 
+        bank_asset_value:
+          Number(
+            latest.bank_asset_value || 0
+          ),
+
         employment_type:
           latest.employment_type || (latest.self_employed === "Yes" ? "Employed" : "Unemployed"),
       });
@@ -117,7 +123,7 @@ function WhatIf() {
             loan_amount: values.loan_amount,
             loan_term: values.loan_term,
             cibil_score: values.cibil_score,
-            bank_asset_value: application ? application.bank_asset_value || 0 : 0,
+            bank_asset_value: values.bank_asset_value,
             is_whatif: true,
           }),
         });
@@ -193,6 +199,11 @@ function WhatIf() {
       no_of_dependents:
         Number(
           application.no_of_dependents
+        ),
+
+      bank_asset_value:
+        Number(
+          application.bank_asset_value || 0
         ),
 
       employment_type:
@@ -472,6 +483,25 @@ function WhatIf() {
           />
 
 
+          {/* BANK ASSET */}
+
+          <ScenarioSlider
+            icon={<Banknote size={14} />}
+            label="Bank Asset/Savings"
+            value={values.bank_asset_value}
+            min={0}
+            max={50000000}
+            step={100000}
+            onChange={(value) =>
+              updateValue(
+                "bank_asset_value",
+                Number(value)
+              )
+            }
+            money
+          />
+
+
           {/* LOAN TERM */}
 
           <ScenarioSlider
@@ -537,6 +567,10 @@ function WhatIf() {
                 Employed
               </option>
 
+              <option value="Farmer">
+                Farmer
+              </option>
+
             </select>
 
           </div>
@@ -575,7 +609,12 @@ function WhatIf() {
 
           <div className="scenario-score">
 
-            <div className="scenario-score-circle">
+            <div
+              className="scenario-score-circle"
+              style={{
+                background: `conic-gradient(#4f8cff 0deg, #754ce8 ${prediction.probability * 3.6}deg, #e9edf3 ${prediction.probability * 3.6}deg)`
+              }}
+            >
 
               <div>
 
